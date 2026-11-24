@@ -7,7 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet" />
+
   <style>
     /* ==========================================================================
        1. DESIGN TOKENS & BASE RESET
@@ -90,7 +91,7 @@
        ========================================================================== */
     .exp-a-track {
       position: relative;
-      height: 450vh;
+      height: 460vh;
       background-color: var(--dark-bg);
       color: var(--dark-text);
     }
@@ -115,11 +116,11 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 30;
+      z-index: 40;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px clamp(18px, 4vw, 48px);
+      padding: 16px clamp(16px, 4vw, 48px);
       pointer-events: none;
     }
 
@@ -131,30 +132,56 @@
     }
 
     .intro-brand img {
-      width: clamp(48px, 5.5vw, 74px);
-      height: clamp(48px, 5.5vw, 74px);
+      width: clamp(46px, 5.2vw, 72px);
+      height: clamp(46px, 5.2vw, 72px);
       object-fit: contain;
       display: block;
     }
 
-    .skip-intro-btn {
+    .intro-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       pointer-events: auto;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      color: var(--dark-text);
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.25s, border-color 0.25s;
     }
 
-    .skip-intro-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.32);
+    .hero-join-btn {
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      border: none;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .hero-join-btn:hover {
+      background: #E2E8F0;
+      transform: translateY(-1px);
+    }
+
+    .menu-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .menu-icon-btn.dark-mode-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+    }
+
+    .menu-icon-btn.dark-mode-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.34);
     }
 
     /* Phase 0: Centerpiece Opening Typography (THE -> HER -> CLUB) */
@@ -306,7 +333,7 @@
     #routed-dot-e { fill: var(--amber-bright); }
     #routed-dot-r { fill: var(--emerald-bright); }
 
-    /* Brief Overview Row (Desktop Stage 1: fanned out under tight HER) */
+    /* Brief Overview Row (Desktop Stage 1 & Final Zoom-Out Overview) */
     .brief-row-desktop {
       position: absolute;
       left: 50%;
@@ -345,7 +372,12 @@
     #brief-e h4 { color: var(--amber-bright); }
     #brief-r h4 { color: var(--emerald-bright); }
 
-    /* Expanded Detail Cards (Desktop Stage 2: emerges below active letter) */
+    /* Mobile Summary Stack (Shown during Final Zoom-Out Overview on Mobile) */
+    .mobile-overview-list {
+      display: none;
+    }
+
+    /* Expanded Detail Cards (Phase 2 Sequential Focus) */
     .detail-cards-host {
       position: absolute;
       inset: 0;
@@ -430,15 +462,53 @@
     #card-r { border-top: 2px solid var(--emerald-bright); }
 
     /* ==========================================================================
-       MOBILE-ONLY SIDE-WISE LEFT-RAIL LAYOUT (<= 768px)
+       MOBILE-ONLY HERO SIZING & SIDE-WISE LEFT-RAIL LAYOUT (<= 768px)
        ========================================================================== */
     @media (max-width: 768px) {
       .exp-a-track {
-        height: 390vh;
+        height: 400vh;
       }
 
+      /* Larger, tighter THE - HER - CLUB lockup on mobile to eliminate excess empty space */
       .hero-opening-text {
-        grid-template-rows: 0.82fr 3.5rem 1.18fr;
+        grid-template-rows: 0.68fr clamp(4.6rem, 18vw, 6.2rem) 1.32fr;
+        padding: 76px 16px 32px;
+      }
+
+      .hero-top-copy {
+        padding-bottom: 6px;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        line-height: 1.35;
+      }
+
+      .hero-the-label {
+        font-size: 1.15rem;
+        letter-spacing: 0.36em;
+        padding-left: 0.36em;
+      }
+
+      .hero-bottom-copy {
+        padding-top: 8px;
+      }
+
+      .hero-club-label {
+        font-size: 1.75rem;
+        letter-spacing: 0.28em;
+        padding-left: 0.28em;
+      }
+
+      .hero-acronym-bar {
+        font-size: 0.74rem;
+        letter-spacing: 0.16em;
+      }
+
+      .hero-manifesto-lines {
+        font-size: 0.84rem;
+        gap: 4px;
       }
 
       .brief-row-desktop,
@@ -453,7 +523,7 @@
 
       .her-glyph {
         position: absolute;
-        font-size: 3.7rem;
+        font-size: clamp(4.2rem, 17vw, 5.4rem);
         left: 50%;
         top: 50%;
         letter-spacing: -0.02em;
@@ -469,13 +539,55 @@
       .arch-detail-card h3 { font-size: 1.15rem; }
       .arch-detail-card p { font-size: 0.82rem; margin-bottom: 10px; }
       .arch-detail-card li { font-size: 0.8rem; }
+
+      /* Mobile Final Zoom-Out Overview Labels next to H, E, R */
+      .mobile-overview-list {
+        display: block;
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9;
+        opacity: 0;
+        will-change: opacity;
+      }
+
+      .mob-ov-item {
+        position: absolute;
+        transform: translateY(-50%);
+        background: rgba(15, 23, 42, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        padding: 10px 14px;
+        width: calc(100vw - 116px);
+        max-width: 340px;
+      }
+
+      .mob-ov-item h4 {
+        font-size: 0.95rem;
+        margin-bottom: 2px;
+      }
+
+      .mob-ov-item p {
+        font-size: 0.76rem;
+        color: var(--dark-muted);
+        line-height: 1.35;
+      }
+
+      #mob-ov-h h4 { color: var(--blue-bright); }
+      #mob-ov-e h4 { color: var(--amber-bright); }
+      #mob-ov-r h4 { color: var(--emerald-bright); }
     }
 
     @media (max-width: 400px) {
-      .her-glyph { font-size: 3.1rem; }
-      .arch-detail-card {
-        width: calc(100vw - 94px);
+      .her-glyph { font-size: 3.7rem; }
+      .arch-detail-card,
+      .mob-ov-item {
+        width: calc(100vw - 96px);
         padding: 15px;
+      }
+      .hero-join-btn {
+        padding: 8px 13px;
+        font-size: 0.8rem;
       }
     }
 
@@ -498,12 +610,119 @@
 
     /* Smooth Gradient Bridge from Dark Hero into Light Website */
     .theme-transition-bridge {
-      height: 110px;
+      height: 96px;
       background: linear-gradient(180deg, var(--dark-bg) 0%, #1E293B 45%, var(--light-bg) 100%);
     }
 
     /* ==========================================================================
-       3. EXPERIENCE B: LIGHT EDITORIAL INSTITUTIONAL WEBSITE
+       3. NAVIGATION DRAWER / MENU (SHARED FOR INTRO & MOBILE STICKY BAR)
+       ========================================================================== */
+    .nav-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(7, 11, 20, 0.55);
+      backdrop-filter: blur(0px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .nav-drawer-backdrop.open {
+      opacity: 0;
+      pointer-events: auto;
+    }
+
+    .nav-drawer-panel {
+      position: fixed;
+      top: 16px;
+      right: clamp(16px, 4vw, 48px);
+      z-index: 95;
+      width: min(320px, calc(100vw - 32px));
+      background: #0F172A;
+      color: #F8FAFC;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+      transform: translateY(-10px) scale(0.97);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .nav-drawer-panel.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .drawer-title {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dark-muted);
+    }
+
+    .drawer-close-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: #FFFFFF;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .drawer-links a {
+      text-decoration: none;
+      color: #E2E8F0;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .drawer-links a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+    }
+
+    .drawer-cta-btn {
+      width: 100%;
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      border: none;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       4. EXPERIENCE B: LIGHT EDITORIAL INSTITUTIONAL WEBSITE
        ========================================================================== */
     .exp-b-wrapper {
       background-color: var(--light-bg);
@@ -515,7 +734,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--light-border);
@@ -528,7 +747,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
     }
 
     .nav-logo {
@@ -600,11 +819,17 @@
       color: var(--blue);
     }
 
+    .nav-right-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .nav-cta {
       background: var(--ink-primary);
       color: #FFFFFF;
       border: none;
-      padding: 10px 20px;
+      padding: 10px 18px;
       border-radius: var(--radius-sm);
       font-size: 0.875rem;
       font-weight: 600;
@@ -616,8 +841,21 @@
       transform: translateY(-1px);
     }
 
+    .mobile-sticky-menu-btn {
+      display: none;
+      background: var(--light-subtle);
+      border: 1px solid var(--light-border-strong);
+      color: var(--ink-primary);
+    }
+
+    .mobile-sticky-menu-btn:hover {
+      background: var(--light-border);
+    }
+
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .mobile-sticky-menu-btn { display: inline-flex; }
+      .nav-cta { padding: 9px 14px; font-size: 0.82rem; }
     }
 
     /* Shared Section Scaffolding */
@@ -656,28 +894,19 @@
     }
 
     /* ==========================================================================
-       4. MANIFESTO & THREE DIVISIONS OVERVIEW (LIGHT MODE)
+       5. MANIFESTO & THREE DIVISIONS OVERVIEW (LIGHT MODE)
        ========================================================================== */
     .manifesto-banner {
       background: var(--light-surface);
-      border: 1px solid var(--light-border);
       border-radius: var(--radius-lg);
       padding: clamp(32px, 5vw, 54px);
-      box-shadow: var(--shadow-sm);
       margin-bottom: 56px;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
 
-    .manifesto-banner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 5px;
-      height: 100%;
-      background: linear-gradient(180deg, var(--blue), var(--amber), var(--emerald));
-    }
+    
 
     .manifesto-quote {
       font-family: var(--font-display);
@@ -702,6 +931,7 @@
       color: var(--ink-muted);
       letter-spacing: 0.06em;
       text-transform: uppercase;
+      justify-content: center;
     }
 
     .divisions-grid {
@@ -795,19 +1025,20 @@
     .div-r li::before { background: var(--emerald); }
 
     /* ==========================================================================
-       5. DOMAINS: INTERACTIVE HUB & SPOKE + SCROLL STEPPER
+       6. DOMAINS: DESKTOP FULL-SCREEN FIT STEPPER + MOBILE SIDEWAYS CARDS
        ========================================================================== */
     .domains-scroll-track {
       position: relative;
-      height: 300vh;
+      height: 290vh;
     }
 
     .domains-surface {
       position: sticky;
       top: 68px;
-      min-height: calc(100vh - 68px);
+      height: calc(100vh - 68px);
       display: flex;
       align-items: center;
+      overflow: hidden;
       background: var(--light-surface);
       border-top: 1px solid var(--light-border);
       border-bottom: 1px solid var(--light-border);
@@ -815,29 +1046,34 @@
 
     .domains-surface .section-block {
       width: 100%;
-      padding-top: clamp(32px, 4vh, 52px);
-      padding-bottom: clamp(32px, 4vh, 52px);
+      padding-top: clamp(18px, 2.5vh, 32px);
+      padding-bottom: clamp(18px, 2.5vh, 32px);
     }
 
     .domains-surface .section-header {
-      margin-bottom: clamp(24px, 3vh, 36px);
+      margin-bottom: clamp(16px, 2.4vh, 28px);
+    }
+
+    .domains-surface .section-heading {
+      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+      margin-bottom: 8px;
+    }
+
+    .domains-surface .section-lead {
+      font-size: 0.96rem;
     }
 
     .hub-layout {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 40px;
+      grid-template-columns: 1.05fr 1fr;
+      gap: clamp(24px, 3vw, 40px);
       align-items: center;
-    }
-
-    @media (max-width: 960px) {
-      .hub-layout { grid-template-columns: 1fr; }
     }
 
     .hub-diagram-box {
       position: relative;
       width: 100%;
-      max-width: 480px;
+      max-width: min(440px, 54vh);
       aspect-ratio: 1 / 1;
       margin: 0 auto;
       background: radial-gradient(circle at center, #F1F5F9 0%, #FFFFFF 70%);
@@ -872,8 +1108,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 112px;
-      height: 112px;
+      width: clamp(88px, 12vh, 108px);
+      height: clamp(88px, 12vh, 108px);
       border-radius: 50%;
       background: var(--ink-primary);
       color: #FFFFFF;
@@ -890,12 +1126,12 @@
     .hub-center-core span {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 0.98rem;
       letter-spacing: 0.08em;
     }
 
     .hub-center-core small {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: #94A3B8;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -908,10 +1144,10 @@
       background: #FFFFFF;
       border: 1.5px solid var(--light-border-strong);
       color: var(--ink-primary);
-      padding: 10px 14px;
+      padding: 8px 13px;
       border-radius: 999px;
       font-family: var(--font-display);
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 600;
       white-space: nowrap;
       box-shadow: var(--shadow-sm);
@@ -932,52 +1168,23 @@
       box-shadow: 0 8px 20px rgba(37, 99, 235, 0.28);
     }
 
-    .mobile-domain-tabs {
-      display: none;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    @media (max-width: 560px) {
-      .hub-diagram-box { display: none; }
-      .mobile-domain-tabs { display: flex; }
-    }
-
-    .mob-tab-btn {
-      background: var(--light-subtle);
-      border: 1px solid var(--light-border);
-      color: var(--ink-secondary);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-family: var(--font-display);
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .mob-tab-btn.active {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: #FFFFFF;
-    }
-
     .domain-spec-card {
       background: var(--light-bg);
       border: 1px solid var(--light-border);
       border-radius: var(--radius-lg);
-      padding: clamp(28px, 4vw, 40px);
+      padding: clamp(22px, 3vh, 34px);
     }
 
     .domain-spec-meta {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .domain-code {
       font-family: var(--font-display);
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -988,54 +1195,131 @@
     }
 
     .domain-spec-card h3 {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
+      font-size: clamp(1.3rem, 2vw, 1.55rem);
+      margin-bottom: 10px;
       color: var(--ink-primary);
     }
 
     .domain-spec-card p {
       color: var(--ink-secondary);
-      font-size: 0.98rem;
-      margin-bottom: 24px;
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+      line-height: 1.55;
     }
 
     .domain-focus-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--ink-muted);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .domain-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 24px;
+      gap: 7px;
+      margin-bottom: 18px;
     }
 
     .domain-tag {
       background: #FFFFFF;
       border: 1px solid var(--light-border-strong);
       color: var(--ink-primary);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      padding: 6px 12px;
+      padding: 5px 10px;
       border-radius: 6px;
     }
 
     .domain-impact-box {
       background: #FFFFFF;
       border-left: 3px solid var(--blue);
-      padding: 12px 16px;
+      padding: 10px 14px;
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       color: var(--ink-secondary);
     }
 
+    /* Mobile Sideways Cards Container (Hidden on Desktop) */
+    .mobile-domains-carousel {
+      display: none;
+    }
+
+    /* Mobile & Tablet Adaptation for Domains (<= 820px) */
+    @media (max-width: 820px) {
+      .domains-scroll-track {
+        height: auto;
+      }
+
+      .domains-surface {
+        position: static;
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .domains-surface .section-block {
+        padding-top: 64px;
+        padding-bottom: 64px;
+      }
+
+      .hub-layout {
+        display: none;
+      }
+
+      .mobile-domains-carousel {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 14px;
+        scrollbar-width: thin;
+      }
+
+      .mobile-domains-carousel::-webkit-scrollbar {
+        height: 5px;
+      }
+
+      .mobile-domains-carousel::-webkit-scrollbar-thumb {
+        background: var(--light-border-strong);
+        border-radius: 999px;
+      }
+
+      .mob-domain-card {
+        flex: 0 0 85%;
+        max-width: 380px;
+        scroll-snap-align: start;
+        background: var(--light-bg);
+        border: 1px solid var(--light-border);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .mob-domain-card h3 {
+        font-size: 1.25rem;
+        margin: 10px 0 8px;
+        color: var(--ink-primary);
+      }
+
+      .mob-domain-card p {
+        font-size: 0.88rem;
+        color: var(--ink-secondary);
+        margin-bottom: 16px;
+      }
+
+      .mob-domain-card .domain-tags {
+        margin-bottom: 16px;
+      }
+    }
+
     /* ==========================================================================
-       6. PERKS & ECOSYSTEM BENTO GRID
+       7. PERKS & ECOSYSTEM BENTO GRID
        ========================================================================== */
     .bento-grid {
       display: grid;
@@ -1111,7 +1395,7 @@
     }
 
     /* ==========================================================================
-       7. GET STARTED (DUAL-BLOCK ACTION STRIP)
+       8. GET STARTED (DUAL-BLOCK ACTION STRIP)
        ========================================================================== */
     .cta-dual-block {
       display: grid;
@@ -1199,7 +1483,7 @@
     }
 
     /* ==========================================================================
-       8. INSTITUTIONAL FOOTER
+       9. INSTITUTIONAL FOOTER
        ========================================================================== */
     .site-footer {
       background: var(--light-surface);
@@ -1269,7 +1553,7 @@
     }
 
     /* ==========================================================================
-       9. ONBOARDING MODAL
+       10. ONBOARDING MODAL
        ========================================================================== */
     .modal-backdrop {
       position: fixed;
@@ -1362,17 +1646,44 @@
 <body>
 
   <!-- ========================================================================
+       SHARED NAVIGATION DRAWER (USED BY INTRO MENU & MOBILE STICKY NAVBAR)
+       ======================================================================== -->
+  <div class="nav-drawer-backdrop" id="nav-drawer-backdrop" onclick="closeNavMenu()"></div>
+  <aside class="nav-drawer-panel" id="nav-drawer-panel" aria-label="Site Navigation Menu">
+    <div class="drawer-header">
+      <span class="drawer-title">HER Club Menu</span>
+      <button type="button" class="drawer-close-btn" onclick="closeNavMenu()" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <nav class="drawer-links">
+      <a href="#divisions" onclick="closeNavMenu()">Divisions</a>
+      <a href="#domains-track" onclick="closeNavMenu()">Domains</a>
+      <a href="#ecosystem" onclick="closeNavMenu()">Ecosystem</a>
+      <a href="#get-started" onclick="closeNavMenu()">Get Started</a>
+    </nav>
+    <button type="button" class="drawer-cta-btn" onclick="closeNavMenu(); openModal();">Join the Club</button>
+  </aside>
+
+  <!-- ========================================================================
        EXPERIENCE A: DARK ARCHITECTURAL HER OPENING SEQUENCE
        ======================================================================== -->
   <section class="exp-a-track" id="exp-a-track" aria-label="HER Club Interactive Introduction">
     <div class="exp-a-sticky">
 
-      <!-- Top Chrome -->
+      <!-- Top Chrome: Institute Logo + Join the Club + Menu Icon -->
       <div class="intro-chrome">
         <div class="intro-brand">
           <img src="iiitbbsr_logo.png" alt="IIIT Bhubaneswar" />
         </div>
-        <a href="#experience-b" class="skip-intro-btn">Skip Intro &darr;</a>
+        <div class="intro-actions">
+          <button type="button" class="hero-join-btn" onclick="openModal()">Join the Club</button>
+          <button type="button" class="menu-icon-btn dark-mode-btn" onclick="openNavMenu()" aria-label="Open menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <!-- Phase 0 Typography Overlay -->
@@ -1423,7 +1734,7 @@
           <circle class="routed-dot" id="mob-dot-r" r="3.5" />
         </svg>
 
-        <!-- Desktop Brief Intro Cards (Fanned out beneath compact HER) -->
+        <!-- Desktop Brief Intro Cards (Shown in Overview & Final Zoom-Out) -->
         <div class="brief-row-desktop" id="brief-row-desktop">
           <div class="brief-card" id="brief-h">
             <h4>Higher Studies</h4>
@@ -1436,6 +1747,22 @@
           <div class="brief-card" id="brief-r">
             <h4>Research</h4>
             <p>Faculty-led interdisciplinary R&amp;D projects, lab exposure, and publications.</p>
+          </div>
+        </div>
+
+        <!-- Mobile Zoom-Out Overview Labels next to H, E, R -->
+        <div class="mobile-overview-list" id="mobile-overview-list">
+          <div class="mob-ov-item" id="mob-ov-h">
+            <h4>Higher Studies</h4>
+            <p>MS/PhD admissions roadmap &amp; US admission chair sessions.</p>
+          </div>
+          <div class="mob-ov-item" id="mob-ov-e">
+            <h4>Entrepreneurship</h4>
+            <p>Incubation cell access, prototyping &amp; seed linkages.</p>
+          </div>
+          <div class="mob-ov-item" id="mob-ov-r">
+            <h4>Research</h4>
+            <p>Faculty-led interdisciplinary R&amp;D &amp; publications.</p>
           </div>
         </div>
 
@@ -1507,7 +1834,16 @@
           <a href="#ecosystem">Ecosystem</a>
           <a href="#get-started">Get Started</a>
         </nav>
-        <button class="nav-cta" type="button" onclick="openModal()">Join the Club</button>
+        <div class="nav-right-controls">
+          <button class="nav-cta" type="button" onclick="openModal()">Join the Club</button>
+          <button type="button" class="menu-icon-btn mobile-sticky-menu-btn" onclick="openNavMenu()" aria-label="Open menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -1573,7 +1909,7 @@
       </div>
     </section>
 
-    <!-- Section 2: Interactive Hub & Spoke Domains (Scroll + Click Synced) -->
+    <!-- Section 2: Domains (Desktop Full-Screen Fit Hub & Spoke | Mobile Sideways Cards) -->
     <div class="domains-scroll-track" id="domains-track">
       <div class="domains-surface" id="domains">
         <section class="section-block">
@@ -1581,15 +1917,12 @@
             <span class="section-eyebrow">Research &amp; Innovation Domains</span>
             <h2 class="section-heading">Frontier Areas at IIIT Bhubaneswar</h2>
             <p class="section-lead">
-              Scroll through or select any domain node connected to the institutional core to inspect active research themes, technologies, and societal applications.
+              Explore active research themes, frontier technologies, and societal applications connected to the institutional core.
             </p>
           </div>
 
-          <!-- Mobile Pill Selector -->
-          <div class="mobile-domain-tabs" id="mobile-domain-tabs"></div>
-
+          <!-- Desktop Hub & Spoke + Specification Panel -->
           <div class="hub-layout">
-            <!-- Hub & Spoke Diagram -->
             <div class="hub-diagram-box" id="hub-diagram">
               <svg class="hub-spokes-svg" viewBox="0 0 500 500" id="hub-svg"></svg>
               <div class="hub-center-core">
@@ -1598,7 +1931,6 @@
               </div>
             </div>
 
-            <!-- Dynamic Specification Panel -->
             <div class="domain-spec-card" id="domain-spec-card" aria-live="polite">
               <div class="domain-spec-meta">
                 <span class="domain-code" id="spec-code">DOMAIN 01</span>
@@ -1612,6 +1944,9 @@
               <div class="domain-impact-box" id="spec-impact"></div>
             </div>
           </div>
+
+          <!-- Mobile Sideways Swipeable Domain Cards -->
+          <div class="mobile-domains-carousel" id="mobile-domains-carousel"></div>
         </section>
       </div>
     </div>
@@ -1809,12 +2144,12 @@
   </div>
 
   <!-- ========================================================================
-       JAVASCRIPT: ROUTED ARCHITECTURAL LINES & HUB-AND-SPOKE SCROLL/CLICK SYNC
+       JAVASCRIPT: ARCHITECTURAL ZOOM-OUT & RESPONSIVE DOMAINS
        ======================================================================== -->
   <script>
     (function () {
       /* ----------------------------------------------------------------------
-         1. EXPERIENCE A: COHESIVE HER WORDMARK + ROUTED CONNECTOR LINES
+         1. EXPERIENCE A: COHESIVE HER WORDMARK + ZOOM-OUT OVERVIEW ENDING
          ---------------------------------------------------------------------- */
       const track = document.getElementById('exp-a-track');
       const heroText = document.getElementById('hero-opening-text');
@@ -1832,6 +2167,13 @@
         h: document.getElementById('brief-h'),
         e: document.getElementById('brief-e'),
         r: document.getElementById('brief-r')
+      };
+
+      const mobOverviewList = document.getElementById('mobile-overview-list');
+      const mobOvItems = {
+        h: document.getElementById('mob-ov-h'),
+        e: document.getElementById('mob-ov-e'),
+        r: document.getElementById('mob-ov-r')
       };
 
       const routedPaths = {
@@ -1871,16 +2213,16 @@
 
       let smoothScroll = window.scrollY;
       let desktopGeom = null;
-      let mobileGlyphOffsets = { h: -34, r: 34 };
+      let mobileGlyphOffsets = { h: -38, r: 38 };
 
       function measureGeometry() {
         const vw = window.innerWidth;
         const vh = window.innerHeight;
 
         if (vw <= 768) {
-          const hW = glyphs.h.getBoundingClientRect().width || 36;
-          const eW = glyphs.e.getBoundingClientRect().width || 32;
-          const rW = glyphs.r.getBoundingClientRect().width || 34;
+          const hW = glyphs.h.getBoundingClientRect().width || 42;
+          const eW = glyphs.e.getBoundingClientRect().width || 38;
+          const rW = glyphs.r.getBoundingClientRect().width || 40;
           mobileGlyphOffsets = {
             h: -(eW * 0.5 + hW * 0.5) + 1,
             r: (eW * 0.5 + rW * 0.5) - 1
@@ -1888,13 +2230,11 @@
           return;
         }
 
-        // Clear any leftover mobile transforms before measuring desktop coordinates
         ['h', 'e', 'r'].forEach((k) => {
           glyphs[k].style.transform = '';
           glyphs[k].style.color = '#FFFFFF';
         });
 
-        // Docked HER position in Stage 1 (centered horizontally, y = -23vh from center, scale = 0.55)
         const dockY = -0.23 * vh;
         const dockScale = 0.55;
 
@@ -1908,7 +2248,6 @@
         const eRect = glyphs.e.getBoundingClientRect();
         const rRect = glyphs.r.getBoundingClientRect();
 
-        // Position brief row 108px below docked HER bottom
         const herBottom = Math.max(hRect.bottom, eRect.bottom, rRect.bottom);
         const briefTop = herBottom + 108;
         briefRow.style.top = `${briefTop}px`;
@@ -1917,7 +2256,6 @@
         const beRect = briefs.e.getBoundingClientRect();
         const brRect = briefs.r.getBoundingClientRect();
 
-        // Restore live transforms immediately
         wordmark.style.transform = currentTransform;
         cameraStage.style.transform = stageTransform;
 
@@ -1995,6 +2333,7 @@
         });
         wordmark.style.transform = '';
         cameraStage.style.transform = '';
+        cameraStage.style.opacity = '1';
         desktopGeom = null;
         measureGeometry();
       }
@@ -2013,36 +2352,42 @@
           resetModeStyles();
         }
 
-        // Phase 0: Opening typography fades out cleanly (3% to 15%)
-        const introFade = 1 - easeInOut(range(p, 0.03, 0.15));
+        // Phase 0: Opening typography fades out cleanly (3% to 14%)
+        const introFade = 1 - easeInOut(range(p, 0.03, 0.14));
         heroText.style.opacity = introFade;
         heroText.style.transform = `translateY(${(1 - introFade) * -18}px)`;
+
+        // Sequential focus intervals: H (0.26-0.46), E (0.46-0.66), R (0.66-0.86)
+        // After 0.86, all focus values return to 0 -> camera zooms back out to show all 3!
+        const focusH = easeInOut(range(p, 0.26, 0.33)) * (1 - easeInOut(range(p, 0.42, 0.48)));
+        const focusE = easeInOut(range(p, 0.46, 0.53)) * (1 - easeInOut(range(p, 0.62, 0.68)));
+        const focusR = easeInOut(range(p, 0.66, 0.73)) * (1 - easeInOut(range(p, 0.82, 0.88)));
+        const anyFocus = Math.max(focusH, focusE, focusR);
+
+        // Final zoom-out overview progress (0.84 to 0.94)
+        const zoomOutOverview = easeInOut(range(p, 0.84, 0.93));
 
         if (!isMobile) {
           if (!desktopGeom) measureGeometry();
 
-          const riseT = easeInOut(range(p, 0.12, 0.28));
+          const riseT = easeInOut(range(p, 0.11, 0.26));
           const initialY = -0.045 * window.innerHeight;
           const currentY = lerp(initialY, desktopGeom.dockY, riseT);
           const currentScale = lerp(1, desktopGeom.dockScale, riseT);
 
           wordmark.style.transform = `translate3d(0px, ${currentY.toFixed(1)}px, 0) scale(${currentScale.toFixed(4)})`;
 
-          // Draw routed architectural lines (18% to 29%)
-          const lineDrawT = easeInOut(range(p, 0.18, 0.29));
+          // Draw routed architectural lines (16% to 27%)
+          const lineDrawT = easeInOut(range(p, 0.16, 0.27));
 
-          // Sequential focus intervals: H (0.29-0.49), E (0.49-0.69), R (0.69-0.89)
-          const focusH = easeInOut(range(p, 0.28, 0.35)) * (1 - easeInOut(range(p, 0.44, 0.50)));
-          const focusE = easeInOut(range(p, 0.48, 0.55)) * (1 - easeInOut(range(p, 0.64, 0.70)));
-          const focusR = easeInOut(range(p, 0.68, 0.75)) * (1 - easeInOut(range(p, 0.85, 0.91)));
-          const anyFocus = Math.max(focusH, focusE, focusR);
-
-          // Brief overview row fades in when lines finish drawing, then fades out on zoom
-          const briefOpacity = easeInOut(range(p, 0.23, 0.30)) * (1 - clamp(anyFocus * 1.8, 0, 1));
+          // Brief overview row appears initially (0.21-0.28), hides during close-up zooms,
+          // and re-emerges as the camera zooms back out at the end (0.84-0.93)
+          const initialBrief = easeInOut(range(p, 0.21, 0.28)) * (1 - clamp(anyFocus * 1.8, 0, 1));
+          const briefOpacity = Math.max(initialBrief, zoomOutOverview);
           briefRow.style.opacity = briefOpacity;
           briefRow.style.transform = `translate3d(-50%, ${(1 - briefOpacity) * 10}px, 0)`;
 
-          // Highlight active glyph while keeping all three letters of HER readable
+          // Highlight active glyph during zoom, then restore all 3 to full brightness on zoom-out
           glyphs.h.style.opacity = lerp(1, 0.26 + 0.74 * focusH, anyFocus);
           glyphs.e.style.opacity = lerp(1, 0.26 + 0.74 * focusE, anyFocus);
           glyphs.r.style.opacity = lerp(1, 0.26 + 0.74 * focusR, anyFocus);
@@ -2057,14 +2402,14 @@
             routedPaths[k].style.strokeDashoffset = len * (1 - lineDrawT);
 
             const activeF = focusMap[k];
-            routedPaths[k].style.opacity = lerp(0.85, 0.14 + 0.86 * activeF, anyFocus);
-            routedPaths[k].style.strokeWidth = activeF > 0.3 ? '2.6' : '1.8';
+            routedPaths[k].style.opacity = lerp(0.9, 0.16 + 0.84 * activeF, anyFocus);
+            routedPaths[k].style.strokeWidth = activeF > 0.3 ? '2.6' : '2';
 
             const showDot = lineDrawT > 0.82 && anyFocus < 0.35;
             routedDots[k].style.opacity = showDot ? 1 : 0;
           });
 
-          // Camera Zoom & Gentle Pan toward the active letter in HER
+          // Camera Zoom & Gentle Pan (automatically returns to panX=0, panY=0, scale=1 at the end)
           const vw = window.innerWidth;
           const centerScreenX = vw * 0.5;
           const offH = (centerScreenX - desktopGeom.anchors.h.sx) * 0.65;
@@ -2074,10 +2419,9 @@
           const panX = focusH * offH + focusE * offE + focusR * offR;
           const zoomScale = 1 + anyFocus * 0.22;
           const panY = anyFocus * -28;
-          const exitScale = 1 - 0.1 * easeInOut(range(p, 0.89, 1.0));
 
-          cameraStage.style.transform = `translate3d(${panX.toFixed(1)}px, ${panY.toFixed(1)}px, 0) scale(${(zoomScale * exitScale).toFixed(4)})`;
-          cameraStage.style.opacity = 1 - easeInOut(range(p, 0.90, 1.0));
+          cameraStage.style.transform = `translate3d(${panX.toFixed(1)}px, ${panY.toFixed(1)}px, 0) scale(${zoomScale.toFixed(4)})`;
+          cameraStage.style.opacity = '1'; // Stays fully visible after zoom-out
 
           // Position & reveal expanded detail cards right below the routed lines
           ['h', 'e', 'r'].forEach((k) => {
@@ -2092,55 +2436,58 @@
           });
 
         } else {
+          /* MOBILE (<= 768px): Tight Initial HER -> Left-Rail Sequence -> Full 3-Pillar Zoom-Out */
           const vw = window.innerWidth;
           const vh = window.innerHeight;
-          const dockT = easeInOut(range(p, 0.12, 0.26));
-
-          const focusH = easeInOut(range(p, 0.25, 0.32)) * (1 - easeInOut(range(p, 0.44, 0.50)));
-          const focusE = easeInOut(range(p, 0.48, 0.55)) * (1 - easeInOut(range(p, 0.64, 0.70)));
-          const focusR = easeInOut(range(p, 0.68, 0.75)) * (1 - easeInOut(range(p, 0.85, 0.91)));
-          const anyFocus = Math.max(focusH, focusE, focusR);
+          const dockT = easeInOut(range(p, 0.11, 0.25));
 
           cameraStage.style.transform = 'none';
-          cameraStage.style.opacity = 1 - easeInOut(range(p, 0.90, 1.0));
+          cameraStage.style.opacity = '1'; // Never fades invisible at the end
 
-          const leftX = -0.36 * vw;
-          const startY = -0.045 * vh;
+          const leftX = -0.35 * vw;
+          const startY = -0.05 * vh;
           const coords = {
-            h: { x: lerp(mobileGlyphOffsets.h, leftX, dockT), y: lerp(startY, -0.17 * vh, dockT), f: focusH },
+            h: { x: lerp(mobileGlyphOffsets.h, leftX, dockT), y: lerp(startY, -0.18 * vh, dockT), f: focusH },
             e: { x: lerp(0, leftX, dockT), y: lerp(startY, 0, dockT), f: focusE },
-            r: { x: lerp(mobileGlyphOffsets.r, leftX, dockT), y: lerp(startY, 0.17 * vh, dockT), f: focusR }
+            r: { x: lerp(mobileGlyphOffsets.r, leftX, dockT), y: lerp(startY, 0.18 * vh, dockT), f: focusR }
           };
+
+          const endX = vw * 0.5 + leftX + 56;
+          mobOverviewList.style.opacity = zoomOutOverview;
 
           ['h', 'e', 'r'].forEach((k) => {
             const c = coords[k];
             glyphs[k].style.transform = `translate3d(calc(-50% + ${c.x.toFixed(1)}px), calc(-50% + ${c.y.toFixed(1)}px), 0)`;
-            glyphs[k].style.opacity = lerp(1, 0.22 + 0.78 * c.f, anyFocus);
+            glyphs[k].style.opacity = lerp(1, 0.24 + 0.76 * c.f, anyFocus);
 
-            // Side connector line from glyph right edge to card left edge
-            const startX = vw * 0.5 + c.x + 26;
+            // Side connector line: connects to center card during zoom, or straight to each overview item at zoom-out
+            const startX = vw * 0.5 + c.x + 30;
             const lineStartY = vh * 0.5 + c.y;
-            const endX = vw * 0.5 + leftX + 54;
-            const endY = vh * 0.5;
+            const targetY = lerp(vh * 0.5, lineStartY, zoomOutOverview);
 
-            const d = `M ${startX.toFixed(1)} ${lineStartY.toFixed(1)} L ${(startX + 12).toFixed(1)} ${lineStartY.toFixed(1)} L ${(endX - 10).toFixed(1)} ${endY.toFixed(1)} L ${endX.toFixed(1)} ${endY.toFixed(1)}`;
+            const d = `M ${startX.toFixed(1)} ${lineStartY.toFixed(1)} L ${(startX + 10).toFixed(1)} ${lineStartY.toFixed(1)} L ${(endX - 8).toFixed(1)} ${targetY.toFixed(1)} L ${endX.toFixed(1)} ${targetY.toFixed(1)}`;
             mobPaths[k].setAttribute('d', d);
             const len = mobPaths[k].getTotalLength();
-            const lineT = clamp(c.f * 1.4, 0, 1);
+            const lineT = Math.max(clamp(c.f * 1.4, 0, 1), zoomOutOverview);
             mobPaths[k].style.strokeDasharray = len;
             mobPaths[k].style.strokeDashoffset = len * (1 - lineT);
             mobPaths[k].style.opacity = lineT > 0.05 ? 1 : 0;
 
             mobDots[k].setAttribute('cx', endX.toFixed(1));
-            mobDots[k].setAttribute('cy', endY.toFixed(1));
+            mobDots[k].setAttribute('cy', targetY.toFixed(1));
             mobDots[k].style.opacity = lineT > 0.8 ? 1 : 0;
 
+            // Detail card during individual focus
             const cardT = clamp((c.f - 0.18) / 0.82, 0, 1);
             cards[k].style.left = `${(endX + 4).toFixed(1)}px`;
             cards[k].style.top = '50%';
             cards[k].style.transform = 'translateY(-50%)';
             cards[k].style.opacity = cardT;
             cards[k].style.pointerEvents = cardT > 0.6 ? 'auto' : 'none';
+
+            // Compact overview card aligned beside each letter during final zoom-out
+            mobOvItems[k].style.left = `${(endX + 6).toFixed(1)}px`;
+            mobOvItems[k].style.top = `${lineStartY.toFixed(1)}px`;
           });
         }
 
@@ -2150,7 +2497,7 @@
       requestAnimationFrame(renderArchitecture);
 
       /* ----------------------------------------------------------------------
-         2. EXPERIENCE B: INTERACTIVE HUB & SPOKE DOMAINS (SCROLL + CLICK)
+         2. EXPERIENCE B: DOMAINS (DESKTOP SCROLL/CLICK + MOBILE SIDEWAYS CARDS)
          ---------------------------------------------------------------------- */
       const domainsData = [
         {
@@ -2211,7 +2558,7 @@
 
       const hubDiagram = document.getElementById('hub-diagram');
       const hubSvg = document.getElementById('hub-svg');
-      const mobileTabs = document.getElementById('mobile-domain-tabs');
+      const mobileCarousel = document.getElementById('mobile-domains-carousel');
       const domainsTrack = document.getElementById('domains-track');
 
       const specCode = document.getElementById('spec-code');
@@ -2222,7 +2569,6 @@
 
       const hubButtons = [];
       const spokeLines = [];
-      const mobButtons = [];
       let currentDomainIdx = 0;
 
       const center = 250;
@@ -2234,6 +2580,7 @@
         const x = center + radius * Math.cos(angleRad);
         const y = center + radius * Math.sin(angleRad);
 
+        // Desktop SVG Spoke
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', center);
         line.setAttribute('y1', center);
@@ -2243,6 +2590,7 @@
         hubSvg.appendChild(line);
         spokeLines.push(line);
 
+        // Desktop Radial Button
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'hub-node-btn';
@@ -2253,20 +2601,28 @@
         hubDiagram.appendChild(btn);
         hubButtons.push(btn);
 
-        const mBtn = document.createElement('button');
-        mBtn.type = 'button';
-        mBtn.className = 'mob-tab-btn';
-        mBtn.textContent = dom.short;
-        mBtn.addEventListener('click', () => jumpToDomain(index));
-        mobileTabs.appendChild(mBtn);
-        mobButtons.push(mBtn);
+        // Mobile Sideways Swipeable Card
+        const mCard = document.createElement('article');
+        mCard.className = 'mob-domain-card';
+        mCard.innerHTML = `
+          <div>
+            <span class="domain-code">${dom.code}</span>
+            <h3>${dom.title}</h3>
+            <p>${dom.desc}</p>
+            <div class="domain-focus-label">Key Research Areas</div>
+            <div class="domain-tags">
+              ${dom.tags.map((t) => `<span class="domain-tag">${t}</span>`).join('')}
+            </div>
+          </div>
+          <div class="domain-impact-box">${dom.impact}</div>
+        `;
+        mobileCarousel.appendChild(mCard);
       });
 
       function selectDomain(idx) {
         const d = domainsData[idx];
         hubButtons.forEach((b, i) => b.classList.toggle('active', i === idx));
         spokeLines.forEach((l, i) => l.classList.toggle('active', i === idx));
-        mobButtons.forEach((b, i) => b.classList.toggle('active', i === idx));
 
         specCode.textContent = d.code;
         specTitle.textContent = d.title;
@@ -2285,6 +2641,8 @@
       function jumpToDomain(idx) {
         selectDomain(idx);
         currentDomainIdx = idx;
+        if (window.innerWidth <= 820) return;
+
         const rect = domainsTrack.getBoundingClientRect();
         const trackTop = window.scrollY + rect.top;
         const maxScroll = domainsTrack.offsetHeight - window.innerHeight;
@@ -2295,6 +2653,8 @@
       }
 
       window.addEventListener('scroll', () => {
+        if (window.innerWidth <= 820) return; // Mobile uses sideways swipe cards, no scroll animation
+
         const rect = domainsTrack.getBoundingClientRect();
         const maxScroll = domainsTrack.offsetHeight - window.innerHeight;
         if (maxScroll <= 0) return;
@@ -2314,8 +2674,21 @@
       selectDomain(0);
 
       /* ----------------------------------------------------------------------
-         3. ONBOARDING MODAL CONTROLS
+         3. NAVIGATION MENU DRAWER & ONBOARDING MODAL CONTROLS
          ---------------------------------------------------------------------- */
+      const navBackdrop = document.getElementById('nav-drawer-backdrop');
+      const navPanel = document.getElementById('nav-drawer-panel');
+
+      window.openNavMenu = function () {
+        navBackdrop.classList.add('open');
+        navPanel.classList.add('open');
+      };
+
+      window.closeNavMenu = function () {
+        navBackdrop.classList.remove('open');
+        navPanel.classList.remove('open');
+      };
+
       const modal = document.getElementById('reg-modal');
       const formContainer = document.getElementById('modal-form-container');
       const successBox = document.getElementById('modal-success');
@@ -2333,6 +2706,13 @@
 
       modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeNavMenu();
+          closeModal();
+        }
       });
 
       regForm.addEventListener('submit', (e) => {
