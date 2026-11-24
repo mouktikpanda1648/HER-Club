@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HER Club — Higher Studies, Entrepreneurship &amp; Research | IIIT Bhubaneswar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & BASE RESET
+       ========================================================================== */
+    :root {
+      /* Dark Opening Sequence (Experience A) */
+      --dark-bg: #070B14;
+      --dark-card: rgba(15, 23, 42, 0.88);
+      --dark-border: rgba(148, 163, 184, 0.22);
+      --dark-text: #F8FAFC;
+      --dark-muted: #94A3B8;
+
+      /* Light Editorial Website (Experience B) */
+      --light-bg: #F8FAFC;
+      --light-surface: #FFFFFF;
+      --light-subtle: #F1F5F9;
+      --light-border: #E2E8F0;
+      --light-border-strong: #CBD5E1;
+      --ink-primary: #0F172A;
+      --ink-secondary: #334155;
+      --ink-muted: #64748B;
+
+      /* Pillar Accents */
+      --blue: #2563EB;
+      --blue-bright: #3B82F6;
+      --blue-soft: #EFF6FF;
+
+      --amber: #D97706;
+      --amber-bright: #F59E0B;
+      --amber-soft: #FFFBEB;
+
+      --emerald: #059669;
+      --emerald-bright: #10B981;
+      --emerald-soft: #ECFDF5;
+
+      /* Typography & Layout */
+      --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --container: 1240px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+      --shadow-md: 0 12px 32px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--light-bg);
+      color: var(--ink-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: var(--font-display);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       2. EXPERIENCE A: DARK ARCHITECTURAL HER OPENING SEQUENCE
+       ========================================================================== */
+    .exp-a-track {
+      position: relative;
+      height: 450vh;
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    .exp-a-sticky {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(37, 99, 235, 0.14), transparent 56%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        var(--dark-bg);
+      background-size: 100% 100%, 56px 56px, 56px 56px, 100% 100%;
+    }
+
+    /* Top Chrome inside Dark Intro */
+    .intro-chrome {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px clamp(18px, 4vw, 48px);
+      pointer-events: none;
+    }
+
+    .intro-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;
+    }
+
+    .intro-brand img {
+      width: clamp(48px, 5.5vw, 74px);
+      height: clamp(48px, 5.5vw, 74px);
+      object-fit: contain;
+      display: block;
+    }
+
+    .skip-intro-btn {
+      pointer-events: auto;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--dark-text);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .skip-intro-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.32);
+    }
+
+    /* Phase 0: Centerpiece Opening Typography (THE -> HER -> CLUB) */
+    .hero-opening-text {
+      position: absolute;
+      inset: 0;
+      z-index: 15;
+      display: grid;
+      grid-template-rows: 0.82fr clamp(4.6rem, 11.5vw, 10.2rem) 1.18fr;
+      justify-items: center;
+      padding: clamp(74px, 10vh, 105px) 20px clamp(36px, 5vh, 56px);
+      text-align: center;
+      pointer-events: none;
+      will-change: opacity, transform;
+    }
+
+    .hero-top-copy {
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-display);
+      font-size: clamp(0.82rem, 1.35vw, 1.15rem);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber-bright);
+    }
+
+    .hero-the-label {
+      font-family: var(--font-display);
+      font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+      font-weight: 600;
+      letter-spacing: 0.42em;
+      padding-left: 0.42em;
+      text-transform: uppercase;
+      color: #CBD5E1;
+    }
+
+    .hero-bottom-copy {
+      grid-row: 3;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 12px;
+    }
+
+    .hero-club-label {
+      margin-bottom: auto;
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.5vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: 0.34em;
+      padding-left: 0.34em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      line-height: 1.1;
+    }
+
+    .hero-acronym-bar {
+      font-family: var(--font-display);
+      font-size: clamp(0.76rem, 1.15vw, 0.94rem);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #E2E8F0;
+      margin-bottom: 10px;
+    }
+
+    .hero-manifesto-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: clamp(0.84rem, 1.05vw, 0.96rem);
+      color: var(--dark-muted);
+    }
+
+    /* Architectural Camera Stage */
+    .camera-stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: center center;
+      will-change: transform, opacity;
+    }
+
+    /* Unified Cohesive HER Wordmark — Zero Gap Between Letters */
+    .her-wordmark {
+      position: relative;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      letter-spacing: -0.02em;
+      font-family: "BBH Bartle", sans-serif;
+      font-size: clamp(5.2rem, 13vw, 11.5rem);
+      font-weight: 400;
+      font-style: normal;
+      line-height: 0.88;
+      user-select: none;
+      will-change: transform;
+    }
+
+    .her-glyph {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      color: #FFFFFF;
+      transition: color 0.35s ease, opacity 0.35s ease;
+    }
+
+    /* Full-Stage Routed SVG Layer (Desktop) */
+    .routed-svg-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 6;
+    }
+
+    .routed-path {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke-width 0.3s ease, opacity 0.3s ease;
+    }
+
+    #routed-path-h { stroke: var(--blue-bright); }
+    #routed-path-e { stroke: var(--amber-bright); }
+    #routed-path-r { stroke: var(--emerald-bright); }
+
+    .routed-dot {
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    #routed-dot-h { fill: var(--blue-bright); }
+    #routed-dot-e { fill: var(--amber-bright); }
+    #routed-dot-r { fill: var(--emerald-bright); }
+
+    /* Brief Overview Row (Desktop Stage 1: fanned out under tight HER) */
+    .brief-row-desktop {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92vw, 1080px);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      z-index: 8;
+      pointer-events: none;
+      will-change: opacity, transform;
+    }
+
+    .brief-card {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      text-align: center;
+    }
+
+    .brief-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 5px;
+    }
+
+    .brief-card p {
+      font-size: 0.83rem;
+      color: var(--dark-muted);
+      line-height: 1.48;
+    }
+
+    #brief-h h4 { color: var(--blue-bright); }
+    #brief-e h4 { color: var(--amber-bright); }
+    #brief-r h4 { color: var(--emerald-bright); }
+
+    /* Expanded Detail Cards (Desktop Stage 2: emerges below active letter) */
+    .detail-cards-host {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 12;
+    }
+
+    .arch-detail-card {
+      position: absolute;
+      width: min(470px, 86vw);
+      background: var(--dark-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.55);
+      will-change: opacity, transform;
+      text-align: left;
+    }
+
+    .arch-card-tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .arch-detail-card h3 {
+      font-size: 1.38rem;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .arch-detail-card p {
+      font-size: 0.88rem;
+      color: var(--dark-muted);
+      margin-bottom: 14px;
+    }
+
+    .arch-detail-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 12px;
+    }
+
+    .arch-detail-card li {
+      font-size: 0.85rem;
+      color: #E2E8F0;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .arch-detail-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.56em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    #card-h .arch-card-tag { color: var(--blue-bright); }
+    #card-h li::before { background: var(--blue-bright); }
+    #card-h { border-top: 2px solid var(--blue-bright); }
+
+    #card-e .arch-card-tag { color: var(--amber-bright); }
+    #card-e li::before { background: var(--amber-bright); }
+    #card-e { border-top: 2px solid var(--amber-bright); }
+
+    #card-r .arch-card-tag { color: var(--emerald-bright); }
+    #card-r li::before { background: var(--emerald-bright); }
+    #card-r { border-top: 2px solid var(--emerald-bright); }
+
+    /* ==========================================================================
+       MOBILE-ONLY SIDE-WISE LEFT-RAIL LAYOUT (<= 768px)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .exp-a-track {
+        height: 390vh;
+      }
+
+      .hero-opening-text {
+        grid-template-rows: 0.82fr 3.5rem 1.18fr;
+      }
+
+      .brief-row-desktop,
+      .routed-svg-layer {
+        display: none;
+      }
+
+      .her-wordmark {
+        position: static;
+        transform: none !important;
+      }
+
+      .her-glyph {
+        position: absolute;
+        font-size: 3.7rem;
+        left: 50%;
+        top: 50%;
+        letter-spacing: -0.02em;
+        will-change: transform, opacity;
+      }
+
+      .arch-detail-card {
+        width: calc(100vw - 112px);
+        max-width: 400px;
+        padding: 18px;
+      }
+
+      .arch-detail-card h3 { font-size: 1.15rem; }
+      .arch-detail-card p { font-size: 0.82rem; margin-bottom: 10px; }
+      .arch-detail-card li { font-size: 0.8rem; }
+    }
+
+    @media (max-width: 400px) {
+      .her-glyph { font-size: 3.1rem; }
+      .arch-detail-card {
+        width: calc(100vw - 94px);
+        padding: 15px;
+      }
+    }
+
+    /* Mobile side connector lines */
+    .mobile-side-svg {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-side-svg {
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 6;
+      }
+    }
+
+    /* Smooth Gradient Bridge from Dark Hero into Light Website */
+    .theme-transition-bridge {
+      height: 110px;
+      background: linear-gradient(180deg, var(--dark-bg) 0%, #1E293B 45%, var(--light-bg) 100%);
+    }
+
+    /* ==========================================================================
+       3. EXPERIENCE B: LIGHT EDITORIAL INSTITUTIONAL WEBSITE
+       ========================================================================== */
+    .exp-b-wrapper {
+      background-color: var(--light-bg);
+      color: var(--ink-primary);
+    }
+
+    /* Sticky Light Navigation */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-border);
+    }
+
+    .nav-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 12px clamp(20px, 4vw, 32px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink-primary);
+    }
+
+    .nav-badge {
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    .nav-badge:has(img) {
+      background: transparent;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-badge img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav-title-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-title-main {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.98rem;
+      line-height: 1.2;
+    }
+
+    .nav-title-sub {
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-cta {
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-cta:hover {
+      background: #1E293B;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    /* Shared Section Scaffolding */
+    .section-block {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: clamp(64px, 8vw, 100px) clamp(20px, 4vw, 32px);
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 48px;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .section-heading {
+      font-size: clamp(1.85rem, 3.2vw, 2.55rem);
+      color: var(--ink-primary);
+      margin-bottom: 14px;
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--ink-secondary);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       4. MANIFESTO & THREE DIVISIONS OVERVIEW (LIGHT MODE)
+       ========================================================================== */
+    .manifesto-banner {
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius-lg);
+      padding: clamp(32px, 5vw, 54px);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .manifesto-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--blue), var(--amber), var(--emerald));
+    }
+
+    .manifesto-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.4vw, 1.95rem);
+      font-weight: 600;
+      color: var(--ink-primary);
+      line-height: 1.35;
+      margin-bottom: 18px;
+    }
+
+    .manifesto-quote span {
+      color: var(--blue);
+    }
+
+    .manifesto-tracks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .divisions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 960px) {
+      .divisions-grid { grid-template-columns: 1fr; }
+    }
+
+    .division-card {
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .division-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .div-letter-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .div-h .div-letter-badge { background: var(--blue-soft); color: var(--blue); }
+    .div-h:hover { border-color: #93C5FD; }
+
+    .div-e .div-letter-badge { background: var(--amber-soft); color: var(--amber); }
+    .div-e:hover { border-color: #FCD34D; }
+
+    .div-r .div-letter-badge { background: var(--emerald-soft); color: var(--emerald); }
+    .div-r:hover { border-color: #6EE7B7; }
+
+    .division-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .division-card .div-sub {
+      font-size: 0.92rem;
+      color: var(--ink-secondary);
+      margin-bottom: 20px;
+    }
+
+    .division-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid var(--light-border);
+    }
+
+    .division-card li {
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .division-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.58em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+
+    .div-h li::before { background: var(--blue); }
+    .div-e li::before { background: var(--amber); }
+    .div-r li::before { background: var(--emerald); }
+
+    /* ==========================================================================
+       5. DOMAINS: INTERACTIVE HUB & SPOKE + SCROLL STEPPER
+       ========================================================================== */
+    .domains-scroll-track {
+      position: relative;
+      height: 300vh;
+    }
+
+    .domains-surface {
+      position: sticky;
+      top: 68px;
+      min-height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      background: var(--light-surface);
+      border-top: 1px solid var(--light-border);
+      border-bottom: 1px solid var(--light-border);
+    }
+
+    .domains-surface .section-block {
+      width: 100%;
+      padding-top: clamp(32px, 4vh, 52px);
+      padding-bottom: clamp(32px, 4vh, 52px);
+    }
+
+    .domains-surface .section-header {
+      margin-bottom: clamp(24px, 3vh, 36px);
+    }
+
+    .hub-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 960px) {
+      .hub-layout { grid-template-columns: 1fr; }
+    }
+
+    .hub-diagram-box {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+      background: radial-gradient(circle at center, #F1F5F9 0%, #FFFFFF 70%);
+      border: 1px solid var(--light-border);
+      border-radius: 50%;
+      box-shadow: inset 0 0 40px rgba(15, 23, 42, 0.02);
+    }
+
+    .hub-spokes-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .spoke-line {
+      stroke: var(--light-border-strong);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 4;
+      transition: stroke 0.3s, stroke-width 0.3s, stroke-dasharray 0.3s;
+    }
+
+    .spoke-line.active {
+      stroke: var(--blue);
+      stroke-width: 2.5;
+      stroke-dasharray: none;
+    }
+
+    .hub-center-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.2);
+      border: 4px solid #FFFFFF;
+      z-index: 4;
+    }
+
+    .hub-center-core span {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+    }
+
+    .hub-center-core small {
+      font-size: 0.65rem;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    .hub-node-btn {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: #FFFFFF;
+      border: 1.5px solid var(--light-border-strong);
+      color: var(--ink-primary);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      z-index: 5;
+    }
+
+    .hub-node-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translate(-50%, -50%) scale(1.04);
+    }
+
+    .hub-node-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #FFFFFF;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.28);
+    }
+
+    .mobile-domain-tabs {
+      display: none;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 560px) {
+      .hub-diagram-box { display: none; }
+      .mobile-domain-tabs { display: flex; }
+    }
+
+    .mob-tab-btn {
+      background: var(--light-subtle);
+      border: 1px solid var(--light-border);
+      color: var(--ink-secondary);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .mob-tab-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #FFFFFF;
+    }
+
+    .domain-spec-card {
+      background: var(--light-bg);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 40px);
+    }
+
+    .domain-spec-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .domain-code {
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-soft);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .domain-spec-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      color: var(--ink-primary);
+    }
+
+    .domain-spec-card p {
+      color: var(--ink-secondary);
+      font-size: 0.98rem;
+      margin-bottom: 24px;
+    }
+
+    .domain-focus-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      margin-bottom: 10px;
+    }
+
+    .domain-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .domain-tag {
+      background: #FFFFFF;
+      border: 1px solid var(--light-border-strong);
+      color: var(--ink-primary);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .domain-impact-box {
+      background: #FFFFFF;
+      border-left: 3px solid var(--blue);
+      padding: 12px 16px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.86rem;
+      color: var(--ink-secondary);
+    }
+
+    /* ==========================================================================
+       6. PERKS & ECOSYSTEM BENTO GRID
+       ========================================================================== */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .bento-item {
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .bento-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .bento-span-7 { grid-column: span 7; }
+    .bento-span-5 { grid-column: span 5; }
+    .bento-span-6 { grid-column: span 6; }
+
+    @media (max-width: 900px) {
+      .bento-span-7,
+      .bento-span-5,
+      .bento-span-6 {
+        grid-column: span 12;
+      }
+    }
+
+    .bento-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--light-subtle);
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .bento-item h3 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    .bento-item p {
+      color: var(--ink-secondary);
+      font-size: 0.94rem;
+      margin-bottom: 20px;
+    }
+
+    .bento-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .bento-pill {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      background: var(--light-subtle);
+      padding: 5px 11px;
+      border-radius: 6px;
+    }
+
+    /* ==========================================================================
+       7. GET STARTED (DUAL-BLOCK ACTION STRIP)
+       ========================================================================== */
+    .cta-dual-block {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 860px) {
+      .cta-dual-block { grid-template-columns: 1fr; }
+    }
+
+    .cta-left-panel {
+      background: var(--light-surface);
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 44px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cta-left-panel h2 {
+      font-size: clamp(1.6rem, 2.6vw, 2.15rem);
+      margin-bottom: 12px;
+    }
+
+    .cta-left-panel p {
+      color: var(--ink-secondary);
+      font-size: 1rem;
+      max-width: 560px;
+    }
+
+    .cta-right-panel {
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 44px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .cta-right-panel span {
+      font-size: 0.82rem;
+      color: #94A3B8;
+      letter-spacing: 0.04em;
+    }
+
+    .btn-register-primary {
+      width: 100%;
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      border: none;
+      padding: 15px 24px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-register-primary:hover {
+      background: #F1F5F9;
+      transform: translateY(-1px);
+    }
+
+    .btn-register-secondary {
+      width: 100%;
+      background: transparent;
+      color: #E2E8F0;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-register-secondary:hover {
+      border-color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* ==========================================================================
+       8. INSTITUTIONAL FOOTER
+       ========================================================================== */
+    .site-footer {
+      background: var(--light-surface);
+      border-top: 1px solid var(--light-border);
+      padding: 56px clamp(20px, 4vw, 32px) 36px;
+    }
+
+    .footer-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--light-border);
+    }
+
+    @media (max-width: 768px) {
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    .footer-brand p {
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      margin-top: 12px;
+      max-width: 380px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-primary);
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-col a, .footer-col li {
+      text-decoration: none;
+      color: var(--ink-muted);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--blue); }
+
+    .footer-bottom {
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    /* ==========================================================================
+       9. ONBOARDING MODAL
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal-box {
+      background: #FFFFFF;
+      border: 1px solid var(--light-border);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 480px;
+      padding: 32px;
+      box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--light-subtle);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      color: var(--ink-secondary);
+    }
+
+    .modal-box h3 { font-size: 1.4rem; margin-bottom: 6px; }
+    .modal-box p { font-size: 0.9rem; color: var(--ink-muted); margin-bottom: 20px; }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--light-border-strong);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.92rem;
+      color: var(--ink-primary);
+      background: #FFFFFF;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .modal-submit {
+      width: 100%;
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 16px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       EXPERIENCE A: DARK ARCHITECTURAL HER OPENING SEQUENCE
+       ======================================================================== -->
+  <section class="exp-a-track" id="exp-a-track" aria-label="HER Club Interactive Introduction">
+    <div class="exp-a-sticky">
+
+      <!-- Top Chrome -->
+      <div class="intro-chrome">
+        <div class="intro-brand">
+          <img src="iiitbbsr_logo.png" alt="IIIT Bhubaneswar" />
+        </div>
+        <a href="#experience-b" class="skip-intro-btn">Skip Intro &darr;</a>
+      </div>
+
+      <!-- Phase 0 Typography Overlay -->
+      <div class="hero-opening-text" id="hero-opening-text">
+        <div class="hero-top-copy">
+          <div class="hero-eyebrow">From being placed to being irreplaceable.</div>
+          <div class="hero-the-label">THE</div>
+        </div>
+
+        <div class="hero-bottom-copy">
+          <div class="hero-club-label">CLUB</div>
+          <div class="hero-acronym-bar">Higher Studies &middot; Entrepreneurship &middot; Research</div>
+          <div class="hero-manifesto-lines">
+            <span>Learn &middot; Build &middot; Create &middot; Belong</span>
+            <span>It all begins with a question or an idea</span>
+            <span>Turn ideas to innovation.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Continuous Camera Stage -->
+      <div class="camera-stage" id="camera-stage">
+
+        <!-- Unified Cohesive HER Wordmark -->
+        <div class="her-wordmark" id="her-wordmark">
+          <span class="her-glyph" id="glyph-h">H</span>
+          <span class="her-glyph" id="glyph-e">E</span>
+          <span class="her-glyph" id="glyph-r">R</span>
+        </div>
+
+        <!-- Desktop Routed SVG Connector Layer -->
+        <svg class="routed-svg-layer" id="routed-svg-layer" aria-hidden="true">
+          <path class="routed-path" id="routed-path-h" />
+          <path class="routed-path" id="routed-path-e" />
+          <path class="routed-path" id="routed-path-r" />
+          <circle class="routed-dot" id="routed-dot-h" r="4.5" />
+          <circle class="routed-dot" id="routed-dot-e" r="4.5" />
+          <circle class="routed-dot" id="routed-dot-r" r="4.5" />
+        </svg>
+
+        <!-- Mobile Side-Wise Connector SVG -->
+        <svg class="mobile-side-svg" id="mobile-side-svg" aria-hidden="true">
+          <path class="routed-path" id="mob-path-h" />
+          <path class="routed-path" id="mob-path-e" />
+          <path class="routed-path" id="mob-path-r" />
+          <circle class="routed-dot" id="mob-dot-h" r="3.5" />
+          <circle class="routed-dot" id="mob-dot-e" r="3.5" />
+          <circle class="routed-dot" id="mob-dot-r" r="3.5" />
+        </svg>
+
+        <!-- Desktop Brief Intro Cards (Fanned out beneath compact HER) -->
+        <div class="brief-row-desktop" id="brief-row-desktop">
+          <div class="brief-card" id="brief-h">
+            <h4>Higher Studies</h4>
+            <p>MS/PhD admissions roadmap, US admission chair sessions, and fellowship guidance.</p>
+          </div>
+          <div class="brief-card" id="brief-e">
+            <h4>Entrepreneurship</h4>
+            <p>Incubation cell access, prototype engineering, and seed funding linkages.</p>
+          </div>
+          <div class="brief-card" id="brief-r">
+            <h4>Research</h4>
+            <p>Faculty-led interdisciplinary R&amp;D projects, lab exposure, and publications.</p>
+          </div>
+        </div>
+
+        <!-- Expanded Detail Cards (Phase 2 Sequential Focus) -->
+        <div class="detail-cards-host" id="detail-cards-host">
+          <div class="arch-detail-card" id="card-h">
+            <span class="arch-card-tag">01 &bull; Higher Studies</span>
+            <h3>Expand Academic Horizons</h3>
+            <p>Structured mentorship and global admission pathways beyond undergraduate coursework.</p>
+            <ul>
+              <li>MS &amp; PhD guidance for India and international universities</li>
+              <li>Direct interaction with Graduate School Admission Chairs (USA)</li>
+              <li>GRE, TOEFL, and fellowship preparation resources</li>
+              <li>Statement of Purpose (SOP) reviews and alumni mentorship</li>
+            </ul>
+          </div>
+
+          <div class="arch-detail-card" id="card-e">
+            <span class="arch-card-tag">02 &bull; Entrepreneurship</span>
+            <h3>Translate Ideas into Impact</h3>
+            <p>Institutional backing to take deep-tech concepts from early prototypes to viable ventures.</p>
+            <ul>
+              <li>Institutional Incubation Cell approval &amp; campus hosting</li>
+              <li>Ideation-to-prototype engineering and lab support</li>
+              <li>Seed funding linkages and investor network access</li>
+              <li>Mentorship from founders and industry leaders</li>
+            </ul>
+          </div>
+
+          <div class="arch-detail-card" id="card-r">
+            <span class="arch-card-tag">03 &bull; Research</span>
+            <h3>Discover, Build, and Publish</h3>
+            <p>Hands-on participation in interdisciplinary R&amp;D solving frontier scientific problems.</p>
+            <ul>
+              <li>Faculty-led and national mission research projects</li>
+              <li>Direct lab exposure and instrumentation training</li>
+              <li>Technical workshops, seminars, and journal clubs</li>
+              <li>Structured pathways to peer-reviewed publications</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Smooth Gradient Bridge from Dark Hero into Light Website -->
+  <div class="theme-transition-bridge"></div>
+
+  <!-- ========================================================================
+       EXPERIENCE B: LIGHT-THEMED INSTITUTIONAL LANDING PAGE
+       ======================================================================== -->
+  <div class="exp-b-wrapper" id="experience-b">
+
+    <!-- Sticky Light Navigation -->
+    <header class="site-header">
+      <div class="nav-inner">
+        <a href="#exp-a-track" class="nav-logo">
+          <span class="nav-badge"><img src="her_logo.png" alt="HER" /></span>
+          <div class="nav-title-group">
+            <span class="nav-title-main">HER Club</span>
+            <span class="nav-title-sub">IIIT Bhubaneswar</span>
+          </div>
+        </a>
+        <nav class="nav-links" aria-label="Primary Navigation">
+          <a href="#divisions">Divisions</a>
+          <a href="#domains-track">Domains</a>
+          <a href="#ecosystem">Ecosystem</a>
+          <a href="#get-started">Get Started</a>
+        </nav>
+        <button class="nav-cta" type="button" onclick="openModal()">Join the Club</button>
+      </div>
+    </header>
+
+    <!-- Section 1: Manifesto & Three Divisions Reference -->
+    <section class="section-block" id="divisions">
+      <div class="manifesto-banner">
+        <p class="manifesto-quote">
+          &ldquo;The choice is not Placement vs. Research vs. Entrepreneurship&mdash;it is spending four years <span>becoming more capable</span>.&rdquo;
+        </p>
+        <div class="manifesto-tracks">
+          <span>Corporate</span> &bull;
+          <span>Government</span> &bull;
+          <span>Startup</span> &bull;
+          <span>R&amp;D</span> &bull;
+          <span>Higher Studies</span>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-eyebrow">Sectional Division</span>
+        <h2 class="section-heading">Three Pillars. One Unified Ecosystem.</h2>
+        <p class="section-lead">
+          HER Club integrates academic progression, venture creation, and scientific inquiry so students can build long-term capability alongside their degree.
+        </p>
+      </div>
+
+      <div class="divisions-grid">
+        <article class="division-card div-h">
+          <div class="div-letter-badge">H</div>
+          <h3>Higher Studies</h3>
+          <p class="div-sub">Structured guidance for competitive postgraduate and doctoral programs worldwide.</p>
+          <ul>
+            <li>MS/PhD admissions roadmap (India &amp; abroad)</li>
+            <li>University selection &amp; scholarship information</li>
+            <li>GRE/TOEFL preparation &amp; SOP workshops</li>
+            <li>Interactions with alumni &amp; US admission chairs</li>
+          </ul>
+        </article>
+
+        <article class="division-card div-e">
+          <div class="div-letter-badge">E</div>
+          <h3>Entrepreneurship</h3>
+          <p class="div-sub">Transforming engineering concepts into scalable, incubation-backed startups.</p>
+          <ul>
+            <li>Ideation, validation &amp; prototype development</li>
+            <li>Institutional Incubation Cell support</li>
+            <li>Seed funding linkages &amp; investor connect</li>
+            <li>Industry mentorship &amp; technology translation</li>
+          </ul>
+        </article>
+
+        <article class="division-card div-r">
+          <div class="div-letter-badge">R</div>
+          <h3>Research</h3>
+          <p class="div-sub">Interdisciplinary research groups driving high-impact publications and patents.</p>
+          <ul>
+            <li>Faculty-led &amp; industry-sponsored R&amp;D</li>
+            <li>Hands-on laboratory &amp; hardware exposure</li>
+            <li>Workshops, seminars &amp; paper reading groups</li>
+            <li>Pathways to conferences, journals &amp; PhDs</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Hub & Spoke Domains (Scroll + Click Synced) -->
+    <div class="domains-scroll-track" id="domains-track">
+      <div class="domains-surface" id="domains">
+        <section class="section-block">
+          <div class="section-header">
+            <span class="section-eyebrow">Research &amp; Innovation Domains</span>
+            <h2 class="section-heading">Frontier Areas at IIIT Bhubaneswar</h2>
+            <p class="section-lead">
+              Scroll through or select any domain node connected to the institutional core to inspect active research themes, technologies, and societal applications.
+            </p>
+          </div>
+
+          <!-- Mobile Pill Selector -->
+          <div class="mobile-domain-tabs" id="mobile-domain-tabs"></div>
+
+          <div class="hub-layout">
+            <!-- Hub & Spoke Diagram -->
+            <div class="hub-diagram-box" id="hub-diagram">
+              <svg class="hub-spokes-svg" viewBox="0 0 500 500" id="hub-svg"></svg>
+              <div class="hub-center-core">
+                <span>IIIT-Bh</span>
+                <small>HER Core</small>
+              </div>
+            </div>
+
+            <!-- Dynamic Specification Panel -->
+            <div class="domain-spec-card" id="domain-spec-card" aria-live="polite">
+              <div class="domain-spec-meta">
+                <span class="domain-code" id="spec-code">DOMAIN 01</span>
+              </div>
+              <h3 id="spec-title">AI, Computer Vision &amp; Intelligent Sensing</h3>
+              <p id="spec-desc">
+                Developing deep learning frameworks, scene understanding algorithms, and edge-ready analytics for real-world visual and sensory intelligence.
+              </p>
+              <div class="domain-focus-label">Key Research Areas</div>
+              <div class="domain-tags" id="spec-tags"></div>
+              <div class="domain-impact-box" id="spec-impact"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Section 3: Perks & Ecosystem Advantages -->
+    <section class="section-block" id="ecosystem">
+      <div class="section-header">
+        <span class="section-eyebrow">Perks &amp; Collaborations</span>
+        <h2 class="section-heading">Institutional Leverage Beyond the Classroom</h2>
+        <p class="section-lead">
+          Members gain structured access to faculty problem statements, international MoUs, graduate admission networks, and campus incubation facilities.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-item bento-span-7">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+            </div>
+            <h3>Smart R&amp;D Project Matchmaking</h3>
+            <p>
+              A curated matchmaking portal pairing student profiles&mdash;skills, coursework, availability, and interests&mdash;with faculty-led research problems, national mission projects, and interdisciplinary student proposals.
+            </p>
+          </div>
+          <div class="bento-pills">
+            <span class="bento-pill">Curated R&amp;D Pool</span>
+            <span class="bento-pill">Skill-Based Matching</span>
+            <span class="bento-pill">Short &amp; Long-Term Tracks</span>
+            <span class="bento-pill">Publication Pathways</span>
+          </div>
+        </div>
+
+        <div class="bento-item bento-span-5">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <h3>Global &amp; Industry MoUs</h3>
+            <p>
+              Strategic partnerships including joint R&amp;D with a UK-based cybersecurity firm and semiconductor curriculum, tools, and internships with a Dutch semiconductor leader.
+            </p>
+          </div>
+          <div class="bento-pills">
+            <span class="bento-pill">UK Cybersecurity MoU</span>
+            <span class="bento-pill">Dutch Semiconductor MoU</span>
+          </div>
+        </div>
+
+        <div class="bento-item bento-span-6">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <h3>Direct Links to US Graduate Admission Chairs</h3>
+            <p>
+              Direct engagement with Graduate School Admission Chairs across leading US universities for MS/PhD guidance, info sessions, and profile evaluation.
+            </p>
+          </div>
+          <div class="bento-pills">
+            <span class="bento-pill">Admission Chair Webinars</span>
+            <span class="bento-pill">MS/PhD Application Strategy</span>
+          </div>
+        </div>
+
+        <div class="bento-item bento-span-6">
+          <div>
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3>Institutional Incubation Cell Access</h3>
+            <p>
+              Approved institutional incubation support enabling students to host deep-tech startups on campus with prototyping labs, advisory, and seed funding linkages.
+            </p>
+          </div>
+          <div class="bento-pills">
+            <span class="bento-pill">On-Campus Startup Hosting</span>
+            <span class="bento-pill">Prototyping &amp; Seed Support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Get Started (Dual-Block Action Strip) -->
+    <section class="section-block" id="get-started">
+      <div class="cta-dual-block">
+        <div class="cta-left-panel">
+          <span class="section-eyebrow">Get Started</span>
+          <h2>Your journey beyond the classroom starts now.</h2>
+          <p>
+            Create your student profile to connect with active research labs, register an early-stage venture concept, or join the upcoming higher-studies mentorship cohort at IIIT Bhubaneswar.
+          </p>
+        </div>
+        <div class="cta-right-panel">
+          <span>OPEN TO ALL IIIT-BH UNDERGRADUATES</span>
+          <button type="button" class="btn-register-primary" onclick="openModal()">Register Student Profile</button>
+          <a href="#domains-track" class="btn-register-secondary">Browse Research Domains</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Institutional Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="nav-logo">
+              <span class="nav-badge">HER</span>
+              <div class="nav-title-group">
+                <span class="nav-title-main">HER Club &mdash; IIIT Bhubaneswar</span>
+                <span class="nav-title-sub">Higher Studies &bull; Entrepreneurship &bull; Research</span>
+              </div>
+            </div>
+            <p>
+              Fostering a culture of scientific inquiry, technological entrepreneurship, and global academic excellence at International Institute of Information Technology, Bhubaneswar.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="#exp-a-track">Interactive Overview</a></li>
+              <li><a href="#divisions">Sectional Divisions</a></li>
+              <li><a href="#domains-track">Research Domains</a></li>
+              <li><a href="#ecosystem">Perks &amp; Collaborations</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Institution</h4>
+            <ul>
+              <li>IIIT Bhubaneswar</li>
+              <li>Gothapatna, PO: Malipada</li>
+              <li>Bhubaneswar, Odisha 751003</li>
+              <li>herclub@iiit-bh.ac.in</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>&copy; 2026 HER Club, IIIT Bhubaneswar. All rights reserved.</span>
+          <span>Explore &middot; Learn &middot; Build &middot; Create &middot; Belong</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ========================================================================
+       STUDENT PROFILE REGISTRATION MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="reg-modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+    <div class="modal-box">
+      <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
+      <div id="modal-form-container">
+        <h3 id="modal-heading">HER Club Onboarding</h3>
+        <p>Submit your academic profile to get matched with projects, mentors, or cohorts.</p>
+        <form id="her-reg-form">
+          <div class="form-group">
+            <label for="stu-name">Full Name</label>
+            <input type="text" id="stu-name" placeholder="Enter your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="stu-id">IIIT-Bh Student ID</label>
+            <input type="text" id="stu-id" placeholder="e.g., B126001" required />
+          </div>
+          <div class="form-group">
+            <label for="stu-pillar">Primary Pillar of Interest</label>
+            <select id="stu-pillar" required>
+              <option value="Research">R &mdash; Research &amp; R&amp;D Projects</option>
+              <option value="Higher Studies">H &mdash; Higher Studies (MS / PhD)</option>
+              <option value="Entrepreneurship">E &mdash; Entrepreneurship &amp; Incubation</option>
+            </select>
+          </div>
+          <button type="submit" class="modal-submit">Complete Registration</button>
+        </form>
+      </div>
+      <div class="modal-success" id="modal-success">
+        <h3>Profile Recorded</h3>
+        <p style="margin-top: 8px; margin-bottom: 20px;">
+          Thank you. Your interest has been logged for the upcoming HER Club orientation and R&amp;D matchmaking cycle.
+        </p>
+        <button type="button" class="modal-submit" onclick="closeModal()">Return to Page</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       JAVASCRIPT: ROUTED ARCHITECTURAL LINES & HUB-AND-SPOKE SCROLL/CLICK SYNC
+       ======================================================================== -->
+  <script>
+    (function () {
+      /* ----------------------------------------------------------------------
+         1. EXPERIENCE A: COHESIVE HER WORDMARK + ROUTED CONNECTOR LINES
+         ---------------------------------------------------------------------- */
+      const track = document.getElementById('exp-a-track');
+      const heroText = document.getElementById('hero-opening-text');
+      const cameraStage = document.getElementById('camera-stage');
+      const wordmark = document.getElementById('her-wordmark');
+
+      const glyphs = {
+        h: document.getElementById('glyph-h'),
+        e: document.getElementById('glyph-e'),
+        r: document.getElementById('glyph-r')
+      };
+
+      const briefRow = document.getElementById('brief-row-desktop');
+      const briefs = {
+        h: document.getElementById('brief-h'),
+        e: document.getElementById('brief-e'),
+        r: document.getElementById('brief-r')
+      };
+
+      const routedPaths = {
+        h: document.getElementById('routed-path-h'),
+        e: document.getElementById('routed-path-e'),
+        r: document.getElementById('routed-path-r')
+      };
+
+      const routedDots = {
+        h: document.getElementById('routed-dot-h'),
+        e: document.getElementById('routed-dot-e'),
+        r: document.getElementById('routed-dot-r')
+      };
+
+      const mobPaths = {
+        h: document.getElementById('mob-path-h'),
+        e: document.getElementById('mob-path-e'),
+        r: document.getElementById('mob-path-r')
+      };
+
+      const mobDots = {
+        h: document.getElementById('mob-dot-h'),
+        e: document.getElementById('mob-dot-e'),
+        r: document.getElementById('mob-dot-r')
+      };
+
+      const cards = {
+        h: document.getElementById('card-h'),
+        e: document.getElementById('card-e'),
+        r: document.getElementById('card-r')
+      };
+
+      const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
+      const lerp = (a, b, t) => a + (b - a) * t;
+      const range = (p, start, end) => clamp((p - start) / (end - start), 0, 1);
+      const easeInOut = (t) => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+      let smoothScroll = window.scrollY;
+      let desktopGeom = null;
+      let mobileGlyphOffsets = { h: -34, r: 34 };
+
+      function measureGeometry() {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+
+        if (vw <= 768) {
+          const hW = glyphs.h.getBoundingClientRect().width || 36;
+          const eW = glyphs.e.getBoundingClientRect().width || 32;
+          const rW = glyphs.r.getBoundingClientRect().width || 34;
+          mobileGlyphOffsets = {
+            h: -(eW * 0.5 + hW * 0.5) + 1,
+            r: (eW * 0.5 + rW * 0.5) - 1
+          };
+          return;
+        }
+
+        // Clear any leftover mobile transforms before measuring desktop coordinates
+        ['h', 'e', 'r'].forEach((k) => {
+          glyphs[k].style.transform = '';
+          glyphs[k].style.color = '#FFFFFF';
+        });
+
+        // Docked HER position in Stage 1 (centered horizontally, y = -23vh from center, scale = 0.55)
+        const dockY = -0.23 * vh;
+        const dockScale = 0.55;
+
+        const currentTransform = wordmark.style.transform;
+        const stageTransform = cameraStage.style.transform;
+
+        cameraStage.style.transform = 'none';
+        wordmark.style.transform = `translate3d(0px, ${dockY}px, 0) scale(${dockScale})`;
+
+        const hRect = glyphs.h.getBoundingClientRect();
+        const eRect = glyphs.e.getBoundingClientRect();
+        const rRect = glyphs.r.getBoundingClientRect();
+
+        // Position brief row 108px below docked HER bottom
+        const herBottom = Math.max(hRect.bottom, eRect.bottom, rRect.bottom);
+        const briefTop = herBottom + 108;
+        briefRow.style.top = `${briefTop}px`;
+
+        const bhRect = briefs.h.getBoundingClientRect();
+        const beRect = briefs.e.getBoundingClientRect();
+        const brRect = briefs.r.getBoundingClientRect();
+
+        // Restore live transforms immediately
+        wordmark.style.transform = currentTransform;
+        cameraStage.style.transform = stageTransform;
+
+        const anchors = {
+          h: {
+            sx: hRect.left + hRect.width * 0.5,
+            sy: hRect.bottom + 8,
+            tx: bhRect.left + bhRect.width * 0.5,
+            ty: bhRect.top - 4
+          },
+          e: {
+            sx: eRect.left + eRect.width * 0.5,
+            sy: eRect.bottom + 8,
+            tx: beRect.left + beRect.width * 0.5,
+            ty: beRect.top - 4
+          },
+          r: {
+            sx: rRect.left + rRect.width * 0.5,
+            sy: rRect.bottom + 8,
+            tx: brRect.left + brRect.width * 0.5,
+            ty: brRect.top - 4
+          }
+        };
+
+        const geom = {
+          dockY,
+          dockScale,
+          herBottom,
+          briefTop,
+          lengths: {},
+          anchors
+        };
+
+        ['h', 'e', 'r'].forEach((k) => {
+          const a = anchors[k];
+          let d = '';
+          if (k === 'e') {
+            d = `M ${a.sx.toFixed(1)} ${a.sy.toFixed(1)} L ${a.tx.toFixed(1)} ${a.ty.toFixed(1)}`;
+          } else {
+            const drop1 = a.sy + 26;
+            const drop2 = a.ty - 26;
+            d = `M ${a.sx.toFixed(1)} ${a.sy.toFixed(1)} L ${a.sx.toFixed(1)} ${drop1.toFixed(1)} L ${a.tx.toFixed(1)} ${drop2.toFixed(1)} L ${a.tx.toFixed(1)} ${a.ty.toFixed(1)}`;
+          }
+          routedPaths[k].setAttribute('d', d);
+          const len = routedPaths[k].getTotalLength();
+          routedPaths[k].style.strokeDasharray = len;
+          routedPaths[k].style.strokeDashoffset = len;
+          geom.lengths[k] = len;
+
+          routedDots[k].setAttribute('cx', a.tx.toFixed(1));
+          routedDots[k].setAttribute('cy', a.ty.toFixed(1));
+        });
+
+        desktopGeom = geom;
+      }
+
+      window.addEventListener('resize', measureGeometry);
+      window.addEventListener('load', measureGeometry);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(measureGeometry);
+      }
+      measureGeometry();
+
+      let lastWasMobile = window.innerWidth <= 768;
+
+      function resetModeStyles() {
+        ['h', 'e', 'r'].forEach((k) => {
+          glyphs[k].style.transform = '';
+          glyphs[k].style.opacity = '1';
+          glyphs[k].style.color = '#FFFFFF';
+          cards[k].style.left = '';
+          cards[k].style.top = '';
+          cards[k].style.transform = '';
+          cards[k].style.opacity = '0';
+        });
+        wordmark.style.transform = '';
+        cameraStage.style.transform = '';
+        desktopGeom = null;
+        measureGeometry();
+      }
+
+      function renderArchitecture() {
+        smoothScroll = lerp(smoothScroll, window.scrollY, 0.12);
+
+        const rect = track.getBoundingClientRect();
+        const trackTop = window.scrollY + rect.top;
+        const maxScroll = track.offsetHeight - window.innerHeight;
+        const p = maxScroll > 0 ? clamp((smoothScroll - trackTop) / maxScroll, 0, 1) : 0;
+
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile !== lastWasMobile) {
+          lastWasMobile = isMobile;
+          resetModeStyles();
+        }
+
+        // Phase 0: Opening typography fades out cleanly (3% to 15%)
+        const introFade = 1 - easeInOut(range(p, 0.03, 0.15));
+        heroText.style.opacity = introFade;
+        heroText.style.transform = `translateY(${(1 - introFade) * -18}px)`;
+
+        if (!isMobile) {
+          if (!desktopGeom) measureGeometry();
+
+          const riseT = easeInOut(range(p, 0.12, 0.28));
+          const initialY = -0.045 * window.innerHeight;
+          const currentY = lerp(initialY, desktopGeom.dockY, riseT);
+          const currentScale = lerp(1, desktopGeom.dockScale, riseT);
+
+          wordmark.style.transform = `translate3d(0px, ${currentY.toFixed(1)}px, 0) scale(${currentScale.toFixed(4)})`;
+
+          // Draw routed architectural lines (18% to 29%)
+          const lineDrawT = easeInOut(range(p, 0.18, 0.29));
+
+          // Sequential focus intervals: H (0.29-0.49), E (0.49-0.69), R (0.69-0.89)
+          const focusH = easeInOut(range(p, 0.28, 0.35)) * (1 - easeInOut(range(p, 0.44, 0.50)));
+          const focusE = easeInOut(range(p, 0.48, 0.55)) * (1 - easeInOut(range(p, 0.64, 0.70)));
+          const focusR = easeInOut(range(p, 0.68, 0.75)) * (1 - easeInOut(range(p, 0.85, 0.91)));
+          const anyFocus = Math.max(focusH, focusE, focusR);
+
+          // Brief overview row fades in when lines finish drawing, then fades out on zoom
+          const briefOpacity = easeInOut(range(p, 0.23, 0.30)) * (1 - clamp(anyFocus * 1.8, 0, 1));
+          briefRow.style.opacity = briefOpacity;
+          briefRow.style.transform = `translate3d(-50%, ${(1 - briefOpacity) * 10}px, 0)`;
+
+          // Highlight active glyph while keeping all three letters of HER readable
+          glyphs.h.style.opacity = lerp(1, 0.26 + 0.74 * focusH, anyFocus);
+          glyphs.e.style.opacity = lerp(1, 0.26 + 0.74 * focusE, anyFocus);
+          glyphs.r.style.opacity = lerp(1, 0.26 + 0.74 * focusR, anyFocus);
+
+          glyphs.h.style.color = focusH > 0.4 ? '#93C5FD' : '#FFFFFF';
+          glyphs.e.style.color = focusE > 0.4 ? '#FCD34D' : '#FFFFFF';
+          glyphs.r.style.color = focusR > 0.4 ? '#6EE7B7' : '#FFFFFF';
+
+          const focusMap = { h: focusH, e: focusE, r: focusR };
+          ['h', 'e', 'r'].forEach((k) => {
+            const len = desktopGeom.lengths[k] || 200;
+            routedPaths[k].style.strokeDashoffset = len * (1 - lineDrawT);
+
+            const activeF = focusMap[k];
+            routedPaths[k].style.opacity = lerp(0.85, 0.14 + 0.86 * activeF, anyFocus);
+            routedPaths[k].style.strokeWidth = activeF > 0.3 ? '2.6' : '1.8';
+
+            const showDot = lineDrawT > 0.82 && anyFocus < 0.35;
+            routedDots[k].style.opacity = showDot ? 1 : 0;
+          });
+
+          // Camera Zoom & Gentle Pan toward the active letter in HER
+          const vw = window.innerWidth;
+          const centerScreenX = vw * 0.5;
+          const offH = (centerScreenX - desktopGeom.anchors.h.sx) * 0.65;
+          const offE = 0;
+          const offR = (centerScreenX - desktopGeom.anchors.r.sx) * 0.65;
+
+          const panX = focusH * offH + focusE * offE + focusR * offR;
+          const zoomScale = 1 + anyFocus * 0.22;
+          const panY = anyFocus * -28;
+          const exitScale = 1 - 0.1 * easeInOut(range(p, 0.89, 1.0));
+
+          cameraStage.style.transform = `translate3d(${panX.toFixed(1)}px, ${panY.toFixed(1)}px, 0) scale(${(zoomScale * exitScale).toFixed(4)})`;
+          cameraStage.style.opacity = 1 - easeInOut(range(p, 0.90, 1.0));
+
+          // Position & reveal expanded detail cards right below the routed lines
+          ['h', 'e', 'r'].forEach((k) => {
+            const f = focusMap[k];
+            const cardT = clamp((f - 0.16) / 0.84, 0, 1);
+            const anchor = desktopGeom.anchors[k];
+            cards[k].style.left = `${anchor.tx.toFixed(1)}px`;
+            cards[k].style.top = `${(desktopGeom.herBottom + 64).toFixed(1)}px`;
+            cards[k].style.transform = `translate3d(-50%, ${(1 - cardT) * 14}px, 0)`;
+            cards[k].style.opacity = cardT;
+            cards[k].style.pointerEvents = cardT > 0.6 ? 'auto' : 'none';
+          });
+
+        } else {
+          const vw = window.innerWidth;
+          const vh = window.innerHeight;
+          const dockT = easeInOut(range(p, 0.12, 0.26));
+
+          const focusH = easeInOut(range(p, 0.25, 0.32)) * (1 - easeInOut(range(p, 0.44, 0.50)));
+          const focusE = easeInOut(range(p, 0.48, 0.55)) * (1 - easeInOut(range(p, 0.64, 0.70)));
+          const focusR = easeInOut(range(p, 0.68, 0.75)) * (1 - easeInOut(range(p, 0.85, 0.91)));
+          const anyFocus = Math.max(focusH, focusE, focusR);
+
+          cameraStage.style.transform = 'none';
+          cameraStage.style.opacity = 1 - easeInOut(range(p, 0.90, 1.0));
+
+          const leftX = -0.36 * vw;
+          const startY = -0.045 * vh;
+          const coords = {
+            h: { x: lerp(mobileGlyphOffsets.h, leftX, dockT), y: lerp(startY, -0.17 * vh, dockT), f: focusH },
+            e: { x: lerp(0, leftX, dockT), y: lerp(startY, 0, dockT), f: focusE },
+            r: { x: lerp(mobileGlyphOffsets.r, leftX, dockT), y: lerp(startY, 0.17 * vh, dockT), f: focusR }
+          };
+
+          ['h', 'e', 'r'].forEach((k) => {
+            const c = coords[k];
+            glyphs[k].style.transform = `translate3d(calc(-50% + ${c.x.toFixed(1)}px), calc(-50% + ${c.y.toFixed(1)}px), 0)`;
+            glyphs[k].style.opacity = lerp(1, 0.22 + 0.78 * c.f, anyFocus);
+
+            // Side connector line from glyph right edge to card left edge
+            const startX = vw * 0.5 + c.x + 26;
+            const lineStartY = vh * 0.5 + c.y;
+            const endX = vw * 0.5 + leftX + 54;
+            const endY = vh * 0.5;
+
+            const d = `M ${startX.toFixed(1)} ${lineStartY.toFixed(1)} L ${(startX + 12).toFixed(1)} ${lineStartY.toFixed(1)} L ${(endX - 10).toFixed(1)} ${endY.toFixed(1)} L ${endX.toFixed(1)} ${endY.toFixed(1)}`;
+            mobPaths[k].setAttribute('d', d);
+            const len = mobPaths[k].getTotalLength();
+            const lineT = clamp(c.f * 1.4, 0, 1);
+            mobPaths[k].style.strokeDasharray = len;
+            mobPaths[k].style.strokeDashoffset = len * (1 - lineT);
+            mobPaths[k].style.opacity = lineT > 0.05 ? 1 : 0;
+
+            mobDots[k].setAttribute('cx', endX.toFixed(1));
+            mobDots[k].setAttribute('cy', endY.toFixed(1));
+            mobDots[k].style.opacity = lineT > 0.8 ? 1 : 0;
+
+            const cardT = clamp((c.f - 0.18) / 0.82, 0, 1);
+            cards[k].style.left = `${(endX + 4).toFixed(1)}px`;
+            cards[k].style.top = '50%';
+            cards[k].style.transform = 'translateY(-50%)';
+            cards[k].style.opacity = cardT;
+            cards[k].style.pointerEvents = cardT > 0.6 ? 'auto' : 'none';
+          });
+        }
+
+        requestAnimationFrame(renderArchitecture);
+      }
+
+      requestAnimationFrame(renderArchitecture);
+
+      /* ----------------------------------------------------------------------
+         2. EXPERIENCE B: INTERACTIVE HUB & SPOKE DOMAINS (SCROLL + CLICK)
+         ---------------------------------------------------------------------- */
+      const domainsData = [
+        {
+          id: 'ai-cv',
+          short: 'AI & Computer Vision',
+          code: 'DOMAIN 01',
+          title: 'AI, Computer Vision & Intelligent Sensing',
+          desc: 'Advancing deep learning architectures, scene understanding, and edge-efficient analytics for autonomous perception and visual intelligence.',
+          tags: ['Video Surveillance', 'Underwater Vision', 'Image Fusion & Multispectral', 'Assistive Vision', 'Deep Learning for Vision'],
+          impact: 'Societal Impact: Safer smart-city surveillance, marine monitoring, and accessible assistive technologies.'
+        },
+        {
+          id: 'semi-vlsi',
+          short: 'Semiconductors & VLSI',
+          code: 'DOMAIN 02',
+          title: 'Semiconductors, VLSI & Nanoelectronics',
+          desc: 'Atomically engineered semiconductor devices, hardware accelerators for AI, and next-generation circuit architectures.',
+          tags: ['VLSI Design', 'Hardware for AI', '2D Materials & Nanosheets', 'Device Technologies', 'Process Integration'],
+          impact: 'Backed by strategic academic & training collaborations in semiconductor technology and EDA tools.'
+        },
+        {
+          id: 'cyber',
+          short: 'Cybersecurity',
+          code: 'DOMAIN 03',
+          title: 'Cybersecurity & Hardware Security',
+          desc: 'Building trustworthy digital systems and resilient silicon architectures to safeguard critical infrastructure and data privacy.',
+          tags: ['Hardware Trojan Detection', 'Physically Unclonable Functions', 'Network & Cloud Security', 'AI for Cyber Defense'],
+          impact: 'Strengthened by international R&D MoU collaboration with a UK-based cybersecurity organization.'
+        },
+        {
+          id: 'quantum',
+          short: 'Quantum & Spintronics',
+          code: 'DOMAIN 04',
+          title: 'Quantum Materials, Spintronics & Communications',
+          desc: 'Exploring electron spin transport, topological quantum phenomena, and ultra-secure quantum communication protocols.',
+          tags: ['Spintronics & MRAM', 'Quantum Materials', 'Quantum Communications', 'Low-Power Memory'],
+          impact: 'Translating fundamental condensed-matter discoveries into energy-efficient computing hardware.'
+        },
+        {
+          id: 'robotics',
+          short: 'Robotics & Drones',
+          code: 'DOMAIN 05',
+          title: 'Robotics, Drones & Autonomous Systems',
+          desc: 'Designing aerial robotics, autonomous navigation pipelines, and intelligent perception-control systems for real-world deployment.',
+          tags: ['Autonomous Systems', 'Aerial Robotics', '3D Mapping & Remote Sensing', 'Edge AI & Control'],
+          impact: 'Applied across precision agriculture, infrastructure inspection, and disaster response.'
+        },
+        {
+          id: 'geoscience',
+          short: 'Geoscience & Smart Grids',
+          code: 'DOMAIN 06',
+          title: 'Geoscience, Remote Sensing & Smart Grids',
+          desc: 'Leveraging satellite data analytics, wireless communication, and intelligent grid architectures for sustainable infrastructure.',
+          tags: ['Satellite Data Analysis', 'Disaster Management', 'Smart Grid Architecture', '5G/6G Wireless Systems'],
+          impact: 'Enabling resilient energy distribution and data-driven environmental monitoring.'
+        }
+      ];
+
+      const hubDiagram = document.getElementById('hub-diagram');
+      const hubSvg = document.getElementById('hub-svg');
+      const mobileTabs = document.getElementById('mobile-domain-tabs');
+      const domainsTrack = document.getElementById('domains-track');
+
+      const specCode = document.getElementById('spec-code');
+      const specTitle = document.getElementById('spec-title');
+      const specDesc = document.getElementById('spec-desc');
+      const specTags = document.getElementById('spec-tags');
+      const specImpact = document.getElementById('spec-impact');
+
+      const hubButtons = [];
+      const spokeLines = [];
+      const mobButtons = [];
+      let currentDomainIdx = 0;
+
+      const center = 250;
+      const radius = 178;
+
+      domainsData.forEach((dom, index) => {
+        const angleDeg = -90 + index * 60;
+        const angleRad = (angleDeg * Math.PI) / 180;
+        const x = center + radius * Math.cos(angleRad);
+        const y = center + radius * Math.sin(angleRad);
+
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', center);
+        line.setAttribute('y1', center);
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', y);
+        line.classList.add('spoke-line');
+        hubSvg.appendChild(line);
+        spokeLines.push(line);
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'hub-node-btn';
+        btn.textContent = dom.short;
+        btn.style.left = `${(x / 500) * 100}%`;
+        btn.style.top = `${(y / 500) * 100}%`;
+        btn.addEventListener('click', () => jumpToDomain(index));
+        hubDiagram.appendChild(btn);
+        hubButtons.push(btn);
+
+        const mBtn = document.createElement('button');
+        mBtn.type = 'button';
+        mBtn.className = 'mob-tab-btn';
+        mBtn.textContent = dom.short;
+        mBtn.addEventListener('click', () => jumpToDomain(index));
+        mobileTabs.appendChild(mBtn);
+        mobButtons.push(mBtn);
+      });
+
+      function selectDomain(idx) {
+        const d = domainsData[idx];
+        hubButtons.forEach((b, i) => b.classList.toggle('active', i === idx));
+        spokeLines.forEach((l, i) => l.classList.toggle('active', i === idx));
+        mobButtons.forEach((b, i) => b.classList.toggle('active', i === idx));
+
+        specCode.textContent = d.code;
+        specTitle.textContent = d.title;
+        specDesc.textContent = d.desc;
+        specImpact.textContent = d.impact;
+
+        specTags.innerHTML = '';
+        d.tags.forEach((tag) => {
+          const span = document.createElement('span');
+          span.className = 'domain-tag';
+          span.textContent = tag;
+          specTags.appendChild(span);
+        });
+      }
+
+      function jumpToDomain(idx) {
+        selectDomain(idx);
+        currentDomainIdx = idx;
+        const rect = domainsTrack.getBoundingClientRect();
+        const trackTop = window.scrollY + rect.top;
+        const maxScroll = domainsTrack.offsetHeight - window.innerHeight;
+        if (maxScroll > 0) {
+          const targetY = trackTop + ((idx + 0.35) / domainsData.length) * maxScroll;
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        const rect = domainsTrack.getBoundingClientRect();
+        const maxScroll = domainsTrack.offsetHeight - window.innerHeight;
+        if (maxScroll <= 0) return;
+
+        const scrolled = -rect.top + 68;
+        if (scrolled < 0 || scrolled > maxScroll) return;
+
+        const progress = clamp(scrolled / maxScroll, 0, 0.999);
+        const targetIdx = Math.floor(progress * domainsData.length);
+
+        if (targetIdx !== currentDomainIdx) {
+          currentDomainIdx = targetIdx;
+          selectDomain(targetIdx);
+        }
+      }, { passive: true });
+
+      selectDomain(0);
+
+      /* ----------------------------------------------------------------------
+         3. ONBOARDING MODAL CONTROLS
+         ---------------------------------------------------------------------- */
+      const modal = document.getElementById('reg-modal');
+      const formContainer = document.getElementById('modal-form-container');
+      const successBox = document.getElementById('modal-success');
+      const regForm = document.getElementById('her-reg-form');
+
+      window.openModal = function () {
+        formContainer.style.display = 'block';
+        successBox.style.display = 'none';
+        modal.classList.add('open');
+      };
+
+      window.closeModal = function () {
+        modal.classList.remove('open');
+      };
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      regForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        formContainer.style.display = 'none';
+        successBox.style.display = 'block';
+        regForm.reset();
+      });
+    })();
+  </script>
+</body>
+</html>
