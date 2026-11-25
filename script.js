@@ -215,6 +215,12 @@
       } else {
         hero.style.opacity = '1';
         if (svg) svg.classList.remove('visible');
+        if (t > 0.01 && !heroTiltDestroyed) {
+  heroTiltEls.forEach(el => {
+    if (el.vanillaTilt) el.vanillaTilt.destroy();
+  });
+  heroTiltDestroyed = true;
+}
         hero.style.transform = `translate3d(${(dx * eased).toFixed(1)}px, ${(dy * eased).toFixed(1)}px, 0) scale(${(1 + (targetScale - 1) * eased).toFixed(4)})`;
       }
     });
@@ -269,6 +275,9 @@
   }
   initTilt($$('.tilt'));
   initTilt($$('.perk-tilt'), { max: 1.5, speed: 600, scale: 1.008 });
+  const heroTiltEls = $$('.her-tilt');
+initTilt(heroTiltEls, { max: 6, speed: 400, scale: 1.03 });
+let heroTiltDestroyed = false;
 
   /* ---------- Reveal on scroll ---------- */
   const rv = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rv.unobserve(e.target); } }), { threshold: .12 });
