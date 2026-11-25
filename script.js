@@ -1,4 +1,4 @@
-/* HER Club · IIIT Bhubaneswar — page behaviour (Bootstrap + VanillaTilt) */
+/* HER Club · IIIT Bhubaneswar — page behaviour (Bootstrap + VanillaTilt) */ 
 (() => {
   'use strict';
   const $ = (s, r = document) => r.querySelector(s);
