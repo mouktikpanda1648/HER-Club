@@ -433,6 +433,8 @@ a{color:inherit}
   margin:0 auto;
   overflow:visible;
   z-index:40;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 .letter{
   margin:0;
@@ -442,6 +444,7 @@ a{color:inherit}
   animation:rise 1.1s cubic-bezier(.2,.8,.2,1) forwards;
   position:relative;
   z-index:50;
+  transform-style: preserve-3d;
 }
 .letter.is-moving{
   animation:none;
