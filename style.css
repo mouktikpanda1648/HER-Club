@@ -8,7 +8,7 @@
   --g-h:linear-gradient(135deg,#00122b 0%,#003a7a 38%,#4aa3b8 70%,#f9d27a 100%);
   --g-e:linear-gradient(135deg,#12151f 0%,#34456b 35%,#b3182f 68%,#ffc2ab 100%);
   --g-r:linear-gradient(135deg,#1a1450 0%,#6b3fc0 35%,#f857d0 70%,#ffc2c8 100%);
-  --g-bar:linear-gradient(90deg,#003a7a 0%,#4aa3b8 24%,#f9d27a 42%,#b3182f 64%,#6b3fc0 82%,#f857d0 100%);
+  --g-bar:linear-gradient(90deg, #00ff11, #fff700, #ff6600, #ff0000);
   --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
   --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --nav-h:50px;
