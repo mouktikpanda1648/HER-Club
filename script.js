@@ -1,4 +1,4 @@
-/* HER Club · IIIT Bhubaneswar — page behaviour (Bootstrap + VanillaTilt) */ 
+/* HER Club · IIIT Bhubaneswar — page behaviour (Bootstrap + VanillaTilt) */
 (() => {
   'use strict';
   const $ = (s, r = document) => r.querySelector(s);
@@ -68,10 +68,10 @@
   ];
 
   const PEOPLE = [
-    { name: 'Dr. D. K. Rout', role: 'Faculty mentor', initials: 'DR', grad: 'var(--g-h)', desc: 'Computer vision, image processing and intelligent sensing.', mail: '#' },
-    { name: 'Dr. S. Mohapatra', role: 'Faculty mentor', initials: 'SM', grad: 'var(--g-r)', desc: 'Spintronics, nanoelectronics, quantum materials and hardware security.', mail: '#' },
-    { name: 'Student Lead', role: 'Higher studies', initials: 'HS', grad: 'var(--g-e)', desc: 'Add a short line about this person and what they help students with.', mail: '#' },
-    { name: 'Student Lead', role: 'Research & entrepreneurship', initials: 'RE', grad: 'linear-gradient(135deg,#3b2414,#a8842c 55%,#fdeeb4)', desc: 'Add a short line about this person and what they help students with.', mail: '#' }
+    { name: 'Dr. Faculty Lead', role: 'Faculty mentor', initials: 'DR', photo: 'Lead1.png', grad: 'var(--g-h)', desc: 'Computer vision, image processing and intelligent sensing.', mail: '#' },
+    { name: 'Dr. Faculty lead', role: 'Faculty mentor', initials: 'SM', photo: 'Lead2.png', grad: 'var(--g-r)', desc: 'Spintronics, nanoelectronics, quantum materials and hardware security.', mail: '#' },
+    { name: 'Student Lead', role: 'Higher studies', initials: 'HS', photo: 'Lead3.png', grad: 'var(--g-e)', desc: 'Add a short line about this person and what they help students with.', mail: '#' },
+    { name: 'Student Lead', role: 'Research & entrepreneurship', initials: 'RE', photo: 'Lead4.png', grad: 'linear-gradient(135deg,#3b2414,#a8842c 55%,#fdeeb4)', desc: 'Add a short line about this person and what they help students with.', mail: '#' }
   ];
 
   const PARTNERS = [
@@ -123,7 +123,6 @@
   }
 
   if (annBar && annToggle && annTicker && annDrawer) {
-    // Open on hovering the arrow button ONLY
     annToggle.addEventListener('mouseenter', () => {
       clearTimeout(annHoverCloseTimer);
       setAnnouncementOpen(true);
@@ -134,7 +133,6 @@
       annHoverCloseTimer = setTimeout(() => setAnnouncementOpen(false), 180);
     });
 
-    // Keep open while pointer moves inside the expanded drawer
     annDrawer.addEventListener('mouseenter', () => {
       clearTimeout(annHoverCloseTimer);
     });
@@ -144,7 +142,6 @@
       annHoverCloseTimer = setTimeout(() => setAnnouncementOpen(false), 180);
     });
 
-    // Toggle on clicking the marquee ticker or the arrow button
     annTicker.addEventListener('click', (e) => {
       e.stopPropagation();
       annPinnedOpen = !annBar.classList.contains('expanded');
@@ -216,11 +213,11 @@
         hero.style.opacity = '1';
         if (svg) svg.classList.remove('visible');
         if (t > 0.01 && !heroTiltDestroyed) {
-  heroTiltEls.forEach(el => {
-    if (el.vanillaTilt) el.vanillaTilt.destroy();
-  });
-  heroTiltDestroyed = true;
-}
+          heroTiltEls.forEach(el => {
+            if (el.vanillaTilt) el.vanillaTilt.destroy();
+          });
+          heroTiltDestroyed = true;
+        }
         hero.style.transform = `translate3d(${(dx * eased).toFixed(1)}px, ${(dy * eased).toFixed(1)}px, 0) scale(${(1 + (targetScale - 1) * eased).toFixed(4)})`;
       }
     });
@@ -276,8 +273,8 @@
   initTilt($$('.tilt'));
   initTilt($$('.perk-tilt'), { max: 1.5, speed: 600, scale: 1.008 });
   const heroTiltEls = $$('.her-tilt');
-initTilt(heroTiltEls, { max: 6, speed: 400, scale: 1.03 });
-let heroTiltDestroyed = false;
+  initTilt(heroTiltEls, { max: 6, speed: 400, scale: 1.03 });
+  let heroTiltDestroyed = false;
 
   /* ---------- Reveal on scroll ---------- */
   const rv = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rv.unobserve(e.target); } }), { threshold: .12 });
@@ -350,9 +347,12 @@ let heroTiltDestroyed = false;
 
   /* ---------- PEOPLE ---------- */
   $('#peopleRow').innerHTML = PEOPLE.map(p => `
-    <div class="col-sm-6 col-lg-3 reveal">
+    <div class="person-col reveal">
       <div class="person">
-        <div class="avatar" style="--pg:${p.grad}" aria-hidden="true"><b>${p.initials}</b></div>
+        <div class="avatar" style="--pg:${p.grad}" aria-hidden="true">
+  <img class="avatar-img" src="${p.photo}" alt="${p.name}"
+    onerror="this.parentElement.classList.add('fallback'); this.replaceWith(Object.assign(document.createElement('b'),{textContent:'${p.initials}'}))">
+</div>
         <div class="person-card tilt">
           <h3>${p.name}</h3><div class="role">${p.role}</div>
           <p>${p.desc}</p>
