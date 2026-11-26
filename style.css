@@ -1,4 +1,4 @@
-/* ===== HER Club · IIIT Bhubaneswar ===== */ 
+/* ===== HER Club · IIIT Bhubaneswar ===== */
 :root{
   --ink:#1b1b1b;
   --paper:#ffffff;
@@ -602,6 +602,7 @@ a{color:inherit}
   width:auto;
   display:block;
   opacity:0;
+  overflow:visible;
   transition:opacity .2s ease, transform .35s ease;
 }
 
@@ -610,16 +611,20 @@ a{color:inherit}
 }
 
 .channel-her-svg .her-shape{
-  transition:fill .35s ease;
+  transition:fill .35s ease, stroke .35s ease;
 }
 
-/* On hover: H / E / R turns solid black as the background photo becomes colourful */
+/* On hover: H / E / R turns white with a thin 2px dark outline as the background photo becomes colourful */
 .channel:hover .channel-her-svg{
   transform:scale(1.06);
 }
 
 .channel:hover .channel-her-svg .her-shape{
-  fill:#000000 !important;
+  fill:#ffffff !important;
+  stroke:#000000;
+  stroke-width:10px;
+  vector-effect:non-scaling-stroke;
+  paint-order:stroke fill;
 }
 
 .art-h{--g:var(--g-h)}.art-e{--g:var(--g-e)}.art-r{--g:var(--g-r)}
@@ -628,8 +633,8 @@ a{color:inherit}
 
 /* ===== JOURNEY ===== */
 .journey {
-  background: var(--ink);
-  color: #fff;
+  background: #fff;
+  color: #000;
   height: calc(100vh - var(--chrome-h));
   max-height: calc(100vh - var(--chrome-h));
   display: flex;
@@ -683,9 +688,9 @@ a{color:inherit}
   right: -1.12rem;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.05rem;
+  font-size: 2.05rem;
   font-weight: 700;
-  color: #f7f6f6;
+  color: #000000;
   z-index: 5;
   pointer-events: none;
 }
@@ -740,6 +745,7 @@ a{color:inherit}
   border-top: 1px solid #2e2e2e;
   padding-top: 0.65rem;
 }
+
 /* ===== HEX DOMAINS (ONE-SCREEN FIT) ===== */
 #domains {
   height: calc(100vh - var(--chrome-h));
@@ -758,7 +764,17 @@ a{color:inherit}
 }
 
 #domains .hint {
-  margin: 0 0 0.9rem;
+  margin: 0.65rem 0 1.25rem;
+}
+
+.hint-badge {
+  display: inline-block;
+  padding: 0.34rem 0.95rem;
+  background: var(--g-r);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
 }
 
 #domains .panel {
@@ -823,22 +839,22 @@ a{color:inherit}
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:4px;
+  gap:6px;
   clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);
   background:transparent;
   transition:background .3s;
 }
 .hex-inner i{
-  font-size:clamp(1.05rem, 1.65vw, 1.5rem);
+  font-size:clamp(1.75rem, 2.65vw, 2.45rem);
   line-height:1;
   color:#ffffff;
 }
 .hex-inner span{
   font-weight:700;
-  font-size:clamp(.6rem,.92vw,.8rem);
+  font-size:clamp(.9rem, 1.28vw, 1.14rem);
   text-align:center;
   line-height:1.12;
-  padding:0 18%;
+  padding:0 16%;
   color:#ffffff;
 }
 .hexwrap:hover{transform:translateY(-3px) scale(1.04)}
@@ -851,7 +867,7 @@ a{color:inherit}
 }
 .hexwrap.active .hex{
   opacity:1;
-  padding:9.5px;
+  padding:6px;
   background:var(--hg);
 }
 .hexwrap.active .hex-inner{
@@ -959,11 +975,60 @@ a{color:inherit}
 .perk-body .btn-grad{width:min(100%,380px);padding:1.1rem}
 .perk-anim{animation:swap .4s ease-out}
 
-/* ===== PEOPLE ===== */
+/* ===== PEOPLE (HORIZONTALLY SCROLLABLE ON OVERFLOW / MOBILE) ===== */
+.people-scroller{
+  display:flex;
+  flex-wrap:nowrap;
+  gap:1.5rem;
+  overflow-x:auto;
+  overflow-y:visible;
+  padding:0.25rem 0.25rem 0.9rem;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:var(--ink) var(--tint);
+}
+.people-scroller::-webkit-scrollbar{
+  height:6px;
+}
+.people-scroller::-webkit-scrollbar-track{
+  background:var(--tint);
+  border:1px solid var(--ink);
+}
+.people-scroller::-webkit-scrollbar-thumb{
+  background:var(--ink);
+}
+.person-col{
+  flex:0 0 calc(25% - 1.125rem);
+  min-width:255px;
+  scroll-snap-align:start;
+}
 .person{position:relative;padding-top:150px;height:100%}
-.avatar{position:absolute;top:0;left:50%;transform:translateX(-50%);width:170px;height:170px;display:grid;place-items:end center;overflow:hidden;
-  background:var(--pg);clip-path:path('M0 170V90C0 40 40 0 85 0s85 40 85 90v80Z')}
+.avatar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 170px;
+  height: 170px;
+  display: grid;
+  place-items: end center;
+  overflow: hidden;
+  background: #ffffff;
+  clip-path: path('M0 170V90C0 40 40 0 85 0s85 40 85 90v80Z');
+}
+
+.avatar.fallback {
+  background: var(--pg);
+}
 .avatar b{font-size:3.2rem;color:#fff;line-height:1;align-self:center}
+.avatar-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
 .person-card{border:2px solid var(--ink);background:#fff;padding:1.4rem 1.1rem 1.3rem;text-align:center;margin-top:20px;height:calc(100% - 20px);display:flex;flex-direction:column;transform-style:preserve-3d}
 .person h3{font-weight:700;font-size:1.25rem;text-transform:uppercase}
 .person .role{color:var(--ink);font-size:.8rem;font-weight:600;margin-bottom:.5rem}
@@ -1082,21 +1147,24 @@ a{color:inherit}
   .announcement-list {
     grid-template-columns: 1fr;
   }
+  .person-col {
+    flex: 0 0 min(290px, 78vw);
+  }
   .her{--h:min(46vh,44vw)}
   .perk-card{grid-template-columns:1fr}
   .hexgrid{margin-block:1rem}
   .journey {
-  height: auto;
-  max-height: none;
-  overflow: visible;
-  padding: clamp(48px, 7vh, 84px) 0;
-}
-.journey-grid {
-  grid-template-columns: repeat(2, 1fr);
-}
-.journey-step::after {
-  display: none;
-}
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding: clamp(48px, 7vh, 84px) 0;
+  }
+  .journey-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .journey-step::after {
+    display: none;
+  }
 }
 @media (max-width:575.98px){
   .perk-tabs{grid-template-columns:repeat(2,1fr);gap:.6rem}
@@ -1104,8 +1172,8 @@ a{color:inherit}
   .her{--h:42vw}
   .letter text{font-size:28px}
   .journey-grid {
-  grid-template-columns: 1fr;
-}
+    grid-template-columns: 1fr;
+  }
   .quote{font-size:1.35rem}
   .nav-iiit-logo{height:28px;width:28px}
 }
