@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Higher Studies · HER Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Links directly to your existing stylesheet -->
+  <link href="../style.css" rel="stylesheet" />
+
+  <style>
+    /* ===== HIGHER STUDIES CHANNEL PAGE — PURE CSS & HER CLUB THEME ===== */
+    .channel-page-main {
+      --g-channel: var(--g-h); /* Respective channel gradient token from style.css */
+      --g-h-vertical: linear-gradient(180deg, #E8C073 0%, #3E9AB5 38%, #134E78 72%, #08152B 100%);
+      padding: 40px 0 64px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Full-width Banner matching .channel-art in style.css */
+    .channel-hero-banner {
+      position: relative;
+      width: 100%;
+      height: 290px;
+      border-top: 2px solid var(--line);
+      border-bottom: 2px solid var(--line);
+      background: #0a0a0a;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      padding: 0 1.25rem;
+    }
+
+    .channel-hero-banner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(100%) brightness(0.42) contrast(1.25);
+      transition: filter 0.45s ease, transform 0.45s ease;
+      z-index: 1;
+    }
+
+    .channel-hero-banner:hover img {
+      filter: grayscale(0%) brightness(1.12) contrast(1.1);
+      transform: scale(1.05);
+    }
+
+    /* Semi-transparent Architectural Box for High Contrast */
+    .channel-title-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(10, 10, 12, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      padding: 1.05rem 2.5rem;
+      text-align: center;
+      transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+    }
+
+    .channel-hero-banner:hover .channel-title-box {
+      background: rgba(10, 10, 12, 0.45);
+      border-color: #ffffff;
+      transform: scale(0.92);
+    }
+
+    /* Title matching the H letter behavior: Gradient first -> White with Black Border on hover */
+    .channel-hero-title {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 3.45rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.08;
+      margin: 0;
+      user-select: none;
+
+      /* Default: Exact H gradient fill */
+      background: var(--g-h-vertical);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-stroke: 0px transparent;
+      paint-order: stroke fill;
+
+      transition: color 0.35s ease, -webkit-text-stroke 0.35s ease;
+    }
+
+    /* Hover: Solid white with crisp black border (mirrors .channel:hover .channel-her-svg) */
+    .channel-hero-banner:hover .channel-hero-title {
+      background: none;
+      -webkit-background-clip: border-box;
+      background-clip: border-box;
+      color: #ffffff;
+      -webkit-text-stroke: 2.5px #000000;
+    }
+
+    /* Content Area Below Banner with Respective Channel Gradient Box */
+    .channel-content-wrap {
+      padding-top: 2.25rem;
+    }
+
+    .channel-body-card {
+      position: relative;
+      background: var(--surface);
+      border: 2px solid transparent;
+      border-top: 6px solid transparent;
+      border-image: var(--g-channel) 1;
+      padding: 2rem 2.25rem;
+    }
+
+    /* Subtle channel gradient tint overlay inside the card */
+    .channel-body-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--g-channel);
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .channel-body-card p {
+      position: relative;
+      z-index: 1;
+      font-family: var(--mono);
+      font-size: 0.96rem;
+      line-height: 1.8;
+      color: var(--ink);
+      margin: 0 0 1.25rem;
+    }
+
+    .channel-body-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Responsive Breakpoints (Standard Media Queries, No clamp()) */
+    @media (max-width: 991.98px) {
+      .channel-hero-banner {
+        height: 240px;
+      }
+      .channel-title-box {
+        padding: 0.9rem 2rem;
+      }
+      .channel-hero-title {
+        font-size: 2.7rem;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .channel-page-main {
+        padding: 28px 0 48px;
+      }
+      .channel-hero-banner {
+        height: 200px;
+      }
+      .channel-title-box {
+        padding: 0.75rem 1.45rem;
+      }
+      .channel-hero-title {
+        font-size: 2.05rem;
+      }
+      .channel-hero-banner:hover .channel-hero-title {
+        -webkit-text-stroke: 2px #000000;
+      }
+      .channel-body-card {
+        padding: 1.4rem 1.35rem;
+      }
+      .channel-body-card p {
+        font-size: 0.9rem;
+        line-height: 1.72;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .channel-hero-banner {
+        height: 170px;
+      }
+      .channel-title-box {
+        padding: 0.65rem 1.15rem;
+        max-width: 92%;
+      }
+      .channel-hero-title {
+        font-size: 1.55rem;
+      }
+      .channel-hero-banner:hover .channel-hero-title {
+        -webkit-text-stroke: 1.5px #000000;
+      }
+      .channel-content-wrap {
+        padding-top: 1.5rem;
+      }
+      .channel-body-card {
+        padding: 1.15rem 1rem;
+      }
+      .channel-body-card p {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-grid">
+
+  <main class="channel-page-main">
+    <!-- Full-bleed Campus Banner with Semi-Transparent Box & Gradient-to-White-Border Title -->
+    <section class="channel-hero-banner">
+      <img src="../images/channels/higher_study.png" alt="Higher Studies University Campus" />
+      <div class="channel-title-box">
+        <h1 class="channel-hero-title">Higher Studies</h1>
+      </div>
+    </section>
+
+    <!-- Monospace Editorial Text Block inside Respective Channel Gradient Box -->
+    <section class="channel-content-wrap">
+      <div class="container-xxl">
+        <div class="channel-body-card">
+          <p>
+            Structured mentorship and global admission pathways beyond undergraduate coursework: MS and PhD guidance, GRE/TOEFL preparation roadmaps, Statement of Purpose (SOP) reviews, and direct alumni and faculty conversations. The Higher Studies desk helps students plan their academic trajectory early—identifying target research groups, building publication-backed profiles, and navigating fellowships in India and abroad.
+          </p>
+          <p>
+            Whether you are targeting direct PhD tracks, thesis-based Master's programs, or interdisciplinary graduate fellowships, our working group connects your undergraduate lab work directly to faculty recommendation letters and graduate admission chairs.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
